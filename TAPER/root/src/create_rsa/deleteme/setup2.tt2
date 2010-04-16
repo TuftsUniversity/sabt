@@ -1,0 +1,38 @@
+[%
+# Office / SSA chooser.
+
+USE scalar;
+offices = Catalyst.local_user.offices;
+%]
+
+<h1>Create an RSA</h1>
+
+<p>To create a regular submission agreement, please confirm the office and standard submission agreement (SSA) which you'd like to use. Then click the "Continue" button.
+</p>
+
+<div id="office_div">
+[% IF scalar.offices > 1 %]
+<h2>Choose your office</h2>
+
+    [% FOREACH office = offices %]
+<p><input type="radio" name="office_id" value="[% office.id %]" /> [% office.name %]</p>
+    [% END %]
+[% ELSE %]
+<h2>Office</h2>
+
+<p><input type="radio" name="office_id" value="[% offices.0.id %]" checked /> [% offices.0.name %]</p>
+</div>
+[% END %]
+
+<div id="ssa_div">
+[% IF scalar.offices == 1 %]
+  [% IF offices.0.scalar.ssas.count > 1 %]
+    [% office = offices.0 %]
+    [% INCLUDE create_rsa/choose_ssa.tt2 %]
+  [% ELSE %]
+<h2>SSA</h2>
+
+<p><input type="radio" name="office_id" value="[% offices.0.ssas.0.id %]" checked /> [% offices.0.ssas.0.name %]</p>
+[% ELSE %]
+   [%# This empty div will get filled in via AJAX. %]
+</div>

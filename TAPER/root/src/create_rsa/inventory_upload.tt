@@ -1,0 +1,37 @@
+[% page_title = 'Upload RSA inventory files' %]
+
+<h2>Uploading inventory files</h2>
+
+<p>
+Please attach one or more files (e.g. Excel documents) that describe this RSA's inventory.
+</p>
+
+<p>
+If you have more than one file to attach, click the "Add another file" button for each one, and then fill in the file-upload field that appears. (If you change your mind about attaching more files, it's OK to leave some fields blank.)
+</p>
+
+<p>
+<a href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/text' ) %]">Click here if you'd rather simply type in a plain-text inventory description, instead.</a>
+</p>
+
+[% form %]
+
+<script type="text/javascript">
+
+var upload_field_counter = 1;
+
+function add_upload_field() {
+
+    // Create a new upload field, and add it to the form.
+    var new_field = document.createElement( 'div' );
+
+    new_field.innerHTML = '<div class="file label">'
+                          + '<label>File: </label>'
+                          + '<input type="file" name="file"/>'
+                          + '</div>'
+    
+    var file_upload_div = document.getElementById( 'file_upload_div' );
+    file_upload_div.appendChild( new_field );
+
+}
+</script>

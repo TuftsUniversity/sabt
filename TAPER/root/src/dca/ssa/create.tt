@@ -1,0 +1,22 @@
+[% page_title = 'Create an SSA' %]
+
+<h2>Create an SSA</h2>
+
+[% IF form.submitted %]
+<div class="alert_box">
+<p>
+SSA not created.  Please correct the fields highlighted below.
+</p>
+</div>
+[% END %]
+
+<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to SSA list</a></p>
+
+<p>Use the form below to create a brand-new Standing Submission
+Agreement. Upon creation, it will immediately become available to
+Submission Agreement Builder users associated with the new SSA's
+office.</p>
+
+[% form %]
+
+[% INCLUDE repeating_field_js.tt %]

@@ -1,0 +1,121 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>
+      [% IF page_title %]
+        [% Catalyst.config.name _ ' - ' _ page_title %]
+      [% ELSE %]
+        [% Catalyst.config.name %]
+      [% END %]
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="[% Catalyst.uri_for( '/static/css/taper_0.01.css') %]" />
+    
+  </head>
+  <body>
+
+    <table id="maintable" cellpadding="0" cellspacing="0" border="0">
+      <!-- set the header images below - includes Tufts logo and school header images-->
+      <tr class="bannerrow">
+
+        <td id="logocell" colspan="2"><!-- display Tufts Logo -->
+          <a href="http://www.tufts.edu/"><img src="http://dca.tufts.edu/images/tufts_logo_226x78.jpg"  alt="Tufts University Logo" height="78" width="226" /></a> </td>
+        <td id="schoolcell"><a href="http://dca.tufts.edu/"><img src="http://dca.tufts.edu/images/site_header_top.jpg"  alt="Digital Collections and Archives" height="78" width="487" /></a> </td>
+        <td id="searchcell">
+
+          <!-- search input box -->
+          <form  name="searchform" method="get" action="http://googlesearch.tufts.edu/search" onsubmit="javascript: dosearch();" class="searchForm">
+            <div>
+              <p class="searchtext">Search&nbsp;
+
+                <input  type="text" class="searchinput" alt="search terms" name="q" size="10" maxlength="255" />
+                <a onclick="javascript: dosearch();" href="javascript: dosearch();" class="searchlink">GO &gt;</a></p>
+              <input class="searchRadio" type="radio" name="srchopt" value="here" checked="checked" />
+              this site
+              <input  class="searchRadio2" type="radio" name="srchopt" value="tufts" size="20" />
+
+              tufts.edu
+              <input class="searchRadio2" type="radio" name="srchopt" value="wp" />
+              people
+              <input type="hidden" name="as_sitesearch" value="dca.tufts.edu"/>
+              <input type="hidden" name="site" value="tufts01"/>
+
+              <input type="hidden" name="client" value="tufts01"/>
+              <input type="hidden" name="proxystylesheet" value="dca_template"/>
+              <input type="hidden" name="output" value="xml_no_dtd"/>
+              <input type="hidden" name="type" value=" " />
+              <input type="hidden" name="search" value=" " />
+
+            </div>
+          </form>
+        </td>
+        <td>&nbsp;</td>
+
+      </tr>
+      <tr class="bannerrow">
+        <td colspan="2" id="logobottomcell"><img src="http://dca.tufts.edu/images/logo_bottom_226x26.jpg"  alt="Digital Collections and Archives" height="26" width="226" /> </td>
+        <td id="schoolcellbottom"><img src="http://dca.tufts.edu/images/site_header_bottom.jpg"  alt="Digital Collections and Archives" height="26" width="487" /> </td>
+
+        <td id="searchcellbottom"><img src="http://dca.tufts.edu/images/bg_190x15.jpg"  alt="Digital Collections and Archives" height="15" width="190" /> </td>
+        <td class="rightsidefull">&nbsp;</td>
+      </tr>
+
+      <tr>
+        <td id="navbarspacercell">&nbsp;</td>
+        <td colspan="3" align="center" class="navbar">
+          <!-- top navigation items -->
+
+          <ul class="udm" id="udm">
+            <li><a href="[% Catalyst.uri_for( '/') %]">TAPER Home</a></li>
+          </ul>
+
+        </td>
+      </tr>
+      <tr>
+        <td valign="top" class="leftphotocell">
+          <!-- left side image -->
+
+          <img src="http://dca.tufts.edu/images/leftside_photo_34x342.jpg"  alt="Digital Collections and Archives" height="342" width="34" /></td>
+        <td valign="top" class="leftnavcell">
+          <div id="leftnav">
+            <!-- left navigation begins -->
+            [% INCLUDE login_div.tt %]
+            <ul><li><span id="on">TAPER links</span></li>
+              <li><a href="[% Catalyst.uri_for( '/' ) %]">TAPER tools homepage</a></li>
+              <li><a href="[% Catalyst.uri_for( '/create_rsa' ) %]">Submission Agreement Builder</a></li>
+              [% IF Catalyst.user && Catalyst.taper_user.is_dca %]
+              <li><a href="[% Catalyst.uri_for( '/dca/' ) %]">DCA TAPER tools</a></li>
+              [% END %]
+            </ul>
+          </div>
+        </td> <!-- leftnavcell -->
+        <td valign="top" class="contentcellwide" colspan="2">
+          <!-- main image goes here -->
+          <img src="http://dca.tufts.edu/images/dca__17.jpg" width="679" height="160" alt="Digital Collections and Archives" border="0" />
+          <!-- begin main content area -->
+          <div id="contentarea">
+            [% content %]
+          </div> <!-- contentarea -->
+        </td>
+
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="footerrow">
+
+
+          <!-- footer materials -->
+          <p class="footer"> <a href="http://www.tufts.edu/" class="footerlink">Tufts</a> | <a href="http://inside.tufts.edu/" class="footerlink">InsideTufts</a> | <a href="/feedback/" class="footerlink">Feedback</a> | <a href="/directions/" class="footerlink">Directions</a> | <a href="http://whitepages.tufts.edu/" class="footerlink">Find People</a> | <a href="/contact/" class="footerlink">Contact Us</a> <br/>
+
+
+            <br/>
+            Copyright &copy;  2008 Tufts University<br />
+          </p>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>
+

@@ -1,0 +1,15 @@
+method: post
+
+elements:
+
+      - type: Radiogroup
+        name: transfer_records
+        options:
+          - [ '1', 'Yes' ]
+          - [ '0', 'No' ]
+        constraints:
+          - type: Required
+
+      - type: Submit
+        value: Submit
+        

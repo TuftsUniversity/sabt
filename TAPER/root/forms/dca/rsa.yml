@@ -1,0 +1,236 @@
+# HTML::FormFu config for DCA-level RSA editing form.
+
+method: post
+
+elements:
+
+      - type: RepeatableFieldset
+        name: sipCreationAndTransfer
+        legend: SIP creation and transfer
+
+      - type: Textarea
+        label: General records description
+        name: generalRecordsDescription
+        rows: 5
+        constraints:
+          - type: Required
+
+      - type: RepeatableFieldset
+        name: extent
+        legend: Extents
+        elements:
+          - type: Text
+            name: extent_value
+            label: Value
+          - type: Text
+            name: extent_units
+            label: Units
+
+      - type: RepeatableFieldset
+        name: formatType
+        legend: Format types
+
+      - type: RepeatableFieldset
+        name: dateSpan
+        legend: Date spans
+        elements:
+          - type: Text
+            name: dateSpan_start
+            label: Starting year
+            attrs:
+              size: 4
+              maxlength: 4
+          - type: Text
+            name: dateSpan_end
+            label: Ending year
+            attrs:
+              size: 4
+              maxlength: 4
+
+      - type: RepeatableFieldset
+        name: recordsCreator
+        legend: Records creator records
+        element_containers_tag: div
+        preamble:
+          - type: Block
+            tag: p
+            content_xml: "For each records creator, supply a descriptive name, an ID string, and/or an email address."
+
+        elements:
+          - type: Text
+            label: Name
+            name: recordsCreator_name
+          - type: Text
+            label: ID
+            name: recordsCreator_id
+          - type: Text
+            label: Email
+            name: recordsCreator_email
+            constraint: Email
+
+      - type: RepeatableFieldset
+        name: recordsProducer
+        legend: Records producer records
+        element_containers_tag: div
+        preamble:
+          - type: Block
+            tag: p
+            content_xml: "For each records producer, supply a descriptive name, an ID string, and/or an email address."
+        elements:
+          - type: Text
+            label: Name
+            name: recordsProducer_name
+          - type: Text
+            label: ID
+            name: recordsProducer_id
+          - type: Text
+            label: Email
+            name: recordsProducer_email
+            constraint: Email
+
+      - type: RequiredDate
+        label: Archive endorsement
+        name: archiveEndorsement
+        day:
+          prefix: '- Day -'
+        month:
+          prefix: '- Month -'
+        year:
+          prefix: '- Year -'
+          less: 10
+          plus: 10
+        auto_inflate: 1
+
+      - type: Text
+        label: Record type record
+        name: recordType
+        constraints:
+          - type: Required
+
+      - type: RepeatableFieldset
+        name: copyright
+        legend: Copyrights
+
+      - type: RepeatableFieldset
+        name: access
+        legend: Access
+
+      - type: Text
+        name: dropboxUrl
+        label: SIP transfer drop box URL
+        constraints:
+          - Required
+          - type: Regex
+            common:
+              - URI
+
+      - type: RequiredDate
+        name: transferDate
+        label: Transfer date
+        day:
+          prefix: '- Day -'
+        month:
+          prefix: '- Month -'
+        year:
+          prefix: '- Year -'
+          less: 10
+          plus: 10
+        auto_inflate: 1
+
+      - type: Fieldset
+        legend: Optional fields
+        elements:
+
+          - type: AllOrNoneDate
+            name: activation
+            label: Activation
+            day:
+              prefix: '- Day -'
+            month:
+              prefix: '- Month -'
+            year:
+              prefix: '- Year -'
+              less: 10
+              plus: 10
+            auto_inflate: 1
+
+          - type: AllOrNoneDate
+            name: expiration
+            label: Expiration
+            day:
+              prefix: '- Day -'
+            month:
+              prefix: '- Month -'
+            year:
+              prefix: '- Year -'
+              less: 10
+              plus: 10
+            auto_inflate: 1
+
+          - type: RepeatableFieldset
+            name: retentionAlertDate
+            legend: Retention alert date
+            elements:
+              - type: RepeatedAllOrNoneDate
+                name: retentionAlertDate
+                day:
+                  prefix: '- Day -'
+                month:
+                  prefix: '- Month -'
+                year:
+                  prefix: '- Year -'
+                  less: 10
+                  plus: 10
+                auto_inflate: 1
+
+          - type: RepeatableFieldset
+            name: recordkeepingSystem
+            legend: Recordkeeping systems
+
+          - type: RepeatableFieldset
+            name: arrangementAndNamingScheme
+            legend: Arrangement and naming schemes
+        
+          - type: RepeatableFieldset
+            name: warrantToCollect
+            legend: Warrants to collect
+
+          - type: Text
+            label: Accession number
+            name: accessionNumber
+
+          - type: RepeatableFieldset
+            name: activityLogNumber
+            legend: Activity log numbers
+
+          - type: RepeatableFieldset
+            name: surveyReportId
+            legend: Survey report IDs
+
+          - type: RepeatableFieldset
+            name: retentionPeriod
+            legend: Retention periods
+
+          - type: RepeatableFieldset
+            name: sipToAip
+            legend: SIP to AIP
+
+          - type: RepeatableFieldset
+            name: archivalDescriptionStandard
+            legend: Archival description standards
+
+          - type: RepeatableFieldset
+            name: respectDeFonds
+            legend: Respect de fonds
+
+      - type: Radiogroup
+        name: is_final
+        label: RSA Status
+        id: is_final
+        options:
+          - [ '0', 'Draft' ]
+          - [ '1', 'Final' ]
+          
+      - type: Submit
+        name: rsa_submit
+        value: Update this RSA

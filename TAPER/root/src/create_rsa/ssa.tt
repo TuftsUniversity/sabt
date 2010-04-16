@@ -1,0 +1,60 @@
+[%# This form allows an 'ordinary', non-DCA user to choose an SSA to
+    base a new RSA on.
+%]
+
+[% page_title = 'Create an RSA' %]
+
+[% IF rsa_complete %]
+<div class="success_box">
+<p>You have completed this Regular Submission Agreement draft! Thank you. DCA staff has been notified of the submission.</p>
+
+[% url = rsa.dropboxUrl %]
+[% IF url %]
+<p>
+The standing submission agreement that this new submission is
+based on, [% rsa.recordType %], uses a dropbox for electronic records.
+If you have electronic files to deposit permanently to the archives at
+this time, you may deposit them by visiting this link (link will open
+in a separate window):
+<a href="[% url %]" target="_blank">[% url %]</a>
+</p>
+[% END %]
+
+<p>If you wish to create a new RSA, you may begin the process anew below by once again selecting a starting SSA.</p>
+</div>
+[% END %]
+
+[% IF ssa_not_found %]
+<p class="error">ERROR: There is no record of an SSA with the database ID '[% ssa_id %]'.</p>
+[% END %]
+
+<h2>Choose an SSA</h2>
+
+<p>Please choose a Standing Submission Agreement from this list.</p>
+
+<form method="post">
+<p>
+<select name="ssa_id">
+[% IF Catalyst.taper_user.is_dca %]
+  [% model = Catalyst.model( 'TAPERDB::Office' ) %]
+  [% offices = model.search( undef, { order_by => 'name' } ) %]
+[% ELSE %]
+  [% offices = Catalyst.taper_user.active_offices %]
+[% END %]
+[% FOREACH office = offices %]
+  [% FOREACH ssa_db_record = office.ssas %]
+    [% ssa = Catalyst.model( 'SSA' ).find( ssa_db_record.id ) %]
+    <option value="[% ssa_db_record.id %]">
+      [% office.name %] :: [% ssa.recordType %]
+    </option>
+  [% END %]
+[% END %]
+</select>
+</p>
+
+<p>
+<input type="submit" name="ssa_submit" value="Base a new submission agreement on this SSA" />
+</p>
+
+
+</form>

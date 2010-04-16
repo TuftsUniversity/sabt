@@ -1,0 +1,12 @@
+method: post
+
+elements:
+      - type: Textarea
+        name: inventory
+        constraints:
+          - type: Required
+
+      - type: Submit
+        name: inventory_submit
+        value: Attach this as inventory
+        

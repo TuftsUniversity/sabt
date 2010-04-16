@@ -1,0 +1,11 @@
+<div id="login_info">
+[% IF Catalyst.user %]
+<p>Welcome, [% Catalyst.user.id %].</p>
+<form method="post" action="/auth/logout">
+<input type="submit" value="Log out of TAPER" />
+</form>
+[% ELSE %]
+<p>You are not signed into TAPER.</p>
+<p>Please use the login controls at right to get full access to these tools.</p>
+[% END %]
+</div>

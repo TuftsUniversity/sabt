@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This is a minimal RSA file. It does not include several elements that the
+schema lists as optional.
+It is suitable for use as testing against the the output of the Submission
+Agreement Builder tool.
+-->
+
+<regularSubmissionAgreement
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" 
+   xsd:noNamespaceSchemaLocation="rsa.xsd"
+   schemaVersion="1.0"
+   id="minimal-RSA2009-01">
+
+  <!-- Submission Agreement Management -->
+  <history>
+    <producerEndorsement>2009-02-09</producerEndorsement>
+    <archiveEndorsement>2009-02-09</archiveEndorsement>
+    <audit />
+  </history>
+  
+  <!-- Archive -->
+  <archiveId>Digital Collections and Archives, Tufts University</archiveId>
+  
+  <!-- Producer -->
+  <recordsCreator id="RC0034" />
+  <recordsProducer>Department of Widget Science, Tufts University</recordsProducer>
+  
+  <!-- Records -->
+  <generalRecordsDescription>Paragraph goes here.</generalRecordsDescription>
+  <recordType>910 Meeting Minutes and Agenda, http://dca.tufts.edu/?pid=63#rs910</recordType>
+  <formatType>PDF/A</formatType>
+  <dateSpan start="1995" end="2001" />
+  <extent value="12" units="cu. ft." />
+  <copyright>Copyright holder: Allen Anderson. Licensing Agreement with Archive: See Anderson-DCA_copyrightlicense_2008-12-12.pdf</copyright>
+  <access>Category 3: General University Records, Closed 20 years from records creation. http://dca.tufts.edu/?pid=17</access>
+  
+  <!-- Producer to Archive -->
+  <sipCreationAndTransfer>Transfer 100 image files as tifs along with inventory and descriptive metadata; place files in electronic dropbox at http://foo</sipCreationAndTransfer>
+  <dropboxUrl>http://example.com/dropbox</dropboxUrl>
+  <transferDate>2009-02-09</transferDate>
+  
+</regularSubmissionAgreement>

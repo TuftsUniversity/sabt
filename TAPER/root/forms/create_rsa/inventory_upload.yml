@@ -1,0 +1,30 @@
+method: post
+
+elements:
+
+      - type: Block
+        tag: p
+        content_xml: '<input type="button" value="Add another file" id="adder_button" onclick="add_upload_field()" />'
+              
+      - type: Block
+        name: div
+        id: file_upload_div
+        elements:
+        - type: Repeatable
+          increment_field_names: 0
+          name: inventory
+          elements:
+            - type: File
+              name: file
+              label: 'File: '
+              constraints:
+                - type: Required
+
+      - type: Block
+        tag: p
+        content_xml: 'Click the button below once you have specified <em>all</em> of the files you wish to attach to this submission agreement.'
+                
+      - type: Submit
+        name: inventory_submit
+        value: Upload and attach all these files
+        

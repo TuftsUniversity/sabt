@@ -1,0 +1,23 @@
+[% page_title = 'Edit an Office' %]
+
+<h2>Edit an Office</h2>
+
+[% IF form.submitted_and_valid %]
+<div class="success_box">
+<p>
+Office updated.
+</p>
+</div>
+[% ELSIF form.submitted %]
+<div class="alert_box">
+<p>
+Office not updated.  Please correct the fields highlighted below.
+</p>
+</div>
+[% END %]
+
+<p><a href="[% Catalyst.uri_for( '/dca/offices/list' ) %]">Return to office list</a></p>
+
+<p>Use the form below to modify this office.</p>
+
+[% form %]

@@ -1,0 +1,182 @@
+# HTML::FormFu config for DCA-level SSA editing form.
+
+method: post
+
+elements:
+
+      - type: RepeatableFieldset
+        name: recordsCreator
+        legend: Records creator records
+        element_containers_tag: div
+        preamble:
+          - type: Block
+            tag: p
+            content_xml: "For each records creator, supply a descriptive name, an ID string, and/or an email address."
+
+        elements:
+          - type: Text
+            label: Name
+            name: recordsCreator_name
+          - type: Text
+            label: ID
+            name: recordsCreator_id
+          - type: Text
+            label: Email
+            name: recordsCreator_email
+            constraint: Email
+
+      - type: RepeatableFieldset
+        name: recordsProducer
+        legend: Records producer records
+        preamble:
+          - type: Block
+            tag: p
+            content_xml: "For each records producer, supply a descriptive name, an ID string, and/or an email address."
+        element_containers_tag: div
+        elements:
+          - type: Text
+            label: Name
+            name: recordsProducer_name
+          - type: Text
+            label: ID
+            name: recordsProducer_id
+          - type: Text
+            label: Email
+            name: recordsProducer_email
+            constraint: Email
+
+      # The 'office' menu gets populated by the controller.
+      - type: Select
+        name: office_id
+        label: Office
+        constraints:
+          - type: Required
+
+      - type: RequiredDate
+        label: Archive endorsement
+        name: archiveEndorsement
+        day:
+          prefix: '- Day -'
+        month:
+          prefix: '- Month -'
+        year:
+          prefix: '- Year -'
+          less: 10
+          plus: 10
+        auto_inflate: 1
+
+      - type: Text
+        label: Record type record
+        name: recordType
+        constraints:
+          - type: Required
+
+      - type: RepeatableFieldset
+        name: copyright
+        legend: Copyrights
+
+      - type: RepeatableFieldset
+        name: access
+        legend: Access
+
+      - type: Text
+        name: dropboxUrl
+        label: SIP transfer drop box URL
+        constraints:
+          - Required
+          - type: Regex
+            common:
+              - URI
+
+      - type: Fieldset
+        legend: Optional fields
+        elements:
+
+        - type: AllOrNoneDate
+          name: activation
+          label: Activation
+          day:
+            prefix: '- Day -'
+          month:
+            prefix: '- Month -'
+          year:
+            prefix: '- Year -'
+            less: 10
+            plus: 10
+          auto_inflate: 1
+
+        - type: AllOrNoneDate
+          name: expiration
+          label: Expiration
+          day:
+            prefix: '- Day -'
+          month:
+            prefix: '- Month -'
+          year:
+            prefix: '- Year -'
+            less: 10
+            plus: 10
+          auto_inflate: 1
+
+        - type: RepeatableFieldset
+          name: retentionAlertDate
+          legend: Retention alert date
+          elements:
+            - type: RepeatedAllOrNoneDate
+              name: retentionAlertDate
+              day:
+                prefix: '- Day -'
+              month:
+                prefix: '- Month -'
+              year:
+                prefix: '- Year -'
+                less: 10
+                plus: 10
+              auto_inflate: 1
+
+        - type: RepeatableFieldset
+          name: warrantToCollect
+          legend: Warrants to collect
+
+        - type: RepeatableFieldset
+          name: activityLogNumber
+          legend: Activity log numbers
+          
+        - type: RepeatableFieldset
+          name: surveyReportId
+          legend: Survey report IDs
+
+        - type: RepeatableFieldset
+          name: recordkeepingSystem
+          legend: Recordkeeping systems
+
+        - type: Textarea
+          name: generalRecordsDescription
+          label: General records description
+          attributes:
+            rows: 10
+            cols: 50
+
+        - type: RepeatableFieldset
+          name: formatType
+          legend: Format types
+
+        - type: RepeatableFieldset
+          name: arrangementAndNamingScheme
+          legend: Arrangement and naming schemes
+          
+        - type: RepeatableFieldset
+          name: retentionPeriod
+          legend: Retention periods
+
+        - type: RepeatableFieldset
+          name: archivalDescriptionStandard
+          legend: Archival description standards
+          
+        - type: RepeatableFieldset
+          name: respectDeFonds
+          legend: Respect de fonds
+
+      - type: Submit
+        name: ssa_submit
+        value: Create this SSA

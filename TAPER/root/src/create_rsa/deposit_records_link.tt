@@ -1,0 +1,11 @@
+[% url = rsa.dropboxUrl %]
+
+<p>
+You may deposit the records by visiting this link (link will open in a separate window): <a href="[% url %]" target="_blank">[% url %]</a>
+</p>
+
+<p>
+When you are finished, you can complete this submission by clicking the button below.
+</p>
+
+[% form %]

@@ -1,0 +1,74 @@
+[%# Fields inherited from the SSA. %]
+
+<table>
+
+  <tr>
+    <td>Activation date for the Standing Submission Agreement</td>
+    <td>[% ssa.activation.ymd %]</td>
+  </tr>
+
+  <tr>
+    <td>Document(s) that give the archive the authority to accession,
+    manage, and preserve the records</td>
+    <td>
+      [% FOREACH value = ssa.warrantToCollect %]
+      [% UNLESS loop.first %]<br />[% END %]
+      [% value %]
+      [% END %]
+    </td>
+  </tr>
+
+  <tr>
+    <td>Creator(s) of the records</td>
+    <td>
+      [% FOREACH value = ssa.recordsCreator %]
+      [% UNLESS loop.first %]<br />[% END %]
+      Name: [% value.name %]<br />
+      ID: [% value.id %]<br />
+      Email: [% value.email %]
+      [% END %]
+    </td>
+  </tr>
+
+  <tr>
+    <td>Person or group authorized to transfer the records to the archives</td>
+    <td>
+      Name: [% producer.name %]<br />
+      ID: [% producer.id %]<br />
+      Email: [% producer.email %]
+    </td>
+  </tr>
+
+  <tr><td>Type of records</td><td>[% ssa.recordType %]</td></tr>
+
+  <tr>
+    <td>Copyright and licensing agreement(s)</td>
+    <td>
+      [% FOREACH value = ssa.copyright %]
+      [% UNLESS loop.first %]<br />[% END %]
+      [% value %]
+      [% END %]
+    </td>
+  </tr>
+
+  <tr>
+    <td>Access restrictions</td>
+    <td>
+      [% FOREACH value = ssa.access %]
+      [% UNLESS loop.first %]<br />[% END %]
+      [% value %]
+      [% END %]
+    </td>
+  </tr>
+
+  <tr>
+    <td>Retention period(s)</td>
+    <td>
+      [% FOREACH value = ssa.retentionPeriod %]
+      [% UNLESS loop.first %]<br />[% END %]
+      [% value %]
+      [% END %]
+    </td>
+  </tr>
+
+</table>

@@ -1,0 +1,58 @@
+<script type="text/javascript">
+
+function add( parent, child_tag ) {
+    return parent.appendChild( document.createElement( child_tag ) );
+}
+
+function add_office( select ) {
+
+    var office_id = select.value;
+    var office_name = select.options.item( select.selectedIndex ).text;
+    select.selectedIndex = 0;
+
+    var block = document.getElementById( 'office' );
+    var office = document.createElement( 'div' );
+    block.insertBefore( office, select.parentNode );
+
+    var hidden = add( office, 'input' );
+    hidden.name = 'office_id';
+    hidden.type = 'hidden';
+    hidden.value = office_id;
+    
+    var label_span = add( office, 'span' );
+    label_span.className = 'label';
+    var name_span = add( label_span, 'span' );
+    name_span.name = 'office_name';
+    name_span.textContent = office_name;
+
+    var checkbox_span = add( office, 'span' );
+    checkbox_span.className = 'checkbox label';
+    var label = add( checkbox_span, 'label' );
+    label.textContent = 'Active?';
+    var checkbox = add( checkbox_span, 'input' );
+    checkbox.name = 'office_active';
+    checkbox.type = 'checkbox';
+    checkbox.value = office_id;
+    checkbox.checked = true;
+
+    var button_span = add( office, 'span' );
+    button_span.className = 'button';
+    var button = add( button_span, 'input' );
+    button.id = 'remove_office_button';
+    button.type = 'button';
+    button.value = '-';
+    button.setAttribute( 'onclick', 'remove_field( this )' );
+
+    var counter = document.getElementById( 'office_counter' );
+    counter.value++;
+}
+
+function remove_field( button ) {
+    var office = button.parentNode.parentNode;
+    office.parentNode.removeChild( office );
+
+    var counter = document.getElementById( 'office_counter' );
+    counter.value--;
+}
+
+</script>

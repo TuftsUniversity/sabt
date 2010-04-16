@@ -1,0 +1,45 @@
+[% page_title = 'Manage Users' %]
+
+<h2>Manage Users</h2>
+
+[% IF user_added %]
+<div class="success_box">
+<p>
+User added.
+</p>
+</div>
+[% END %]
+
+<p>From this screen, you can either choose an existing user to edit,
+or add a new user.</p>
+
+<h3>Add a new user</h3>
+
+<p><a href="[% Catalyst.uri_for( '/dca/users/add' ) %]">Click here to add a new user.</a></p>
+
+<h3>Edit a user</h3>
+
+<p>
+<ul>
+[% FOREACH user = Catalyst.model( 'TAPERDB::User' ).all.sort( 'last_name' ) %]
+   <li>
+   [% IF user.first_name OR user.last_name %]
+     [% user.first_name %] [% user.last_name %],
+   [% END %]
+   [% user.username %]<br /><br />
+   [% IF user.offices %]
+     [% FOREACH user_office = user.user_offices_sorted %]
+       [% user_office.office.name %],
+       [% IF not user_office.active %]in[% END %]active<br />
+     [% END %]
+     <br />
+   [% END %]
+   <a href="[% Catalyst.uri_for( '/dca/users/user/' _ user.id _ '/edit' ) %]">
+     edit
+   </a>
+   <br />
+   <br />
+   </li>
+[% END %]
+</ul>
+</p>

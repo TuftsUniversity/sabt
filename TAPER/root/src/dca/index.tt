@@ -1,0 +1,27 @@
+[% page_title = 'DCA Home' %]
+
+<h1>DCA Home</h1>
+
+<p>This is the homepage of DCA staff tools.</p>
+
+<h2><a href="[% Catalyst.uri_for ('/dca/ssas/list') %]">Manage SSAs</a></h2>
+
+<p>Visit this page to view, edit, and create Standing Submission Agreements.</p>
+
+<h2><a href="[% Catalyst.uri_for ('/dca/rsas/drafts') %]">Manage Draft RSAs</a></h2>
+
+<p>Visit this page to view and edit Regular Submission Agreements that
+need DCA attention.</p>
+
+<h2><a href="[% Catalyst.uri_for ('/dca/rsas/archive') %]">Manage Archived RSAs</a></h2>
+
+<p>Visit this page to view and edit Regular Submission Agreements that
+have been completed.</p>
+
+<h2><a href="[% Catalyst.uri_for ('/dca/users/list') %]">Manage Users</a></h2>
+
+<p>Visit this page to view, edit, and add users.</p>
+
+<h2><a href="[% Catalyst.uri_for ('/dca/offices/list') %]">Manage Offices</a></h2>
+
+<p>Visit this page to view, edit, and add offices.</p>

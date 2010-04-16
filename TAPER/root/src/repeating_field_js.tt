@@ -1,0 +1,80 @@
+<script type="text/javascript">
+
+function has_class( element, className ) {
+    var classes = element.className.split(' ');
+    for ( var i in classes ) if ( classes[ i ] == className ) return true;
+    return false;
+}
+
+var repeatable_fields = new Array;
+var fieldsets = document.getElementsByTagName( 'fieldset' );
+for ( var i = 0; i < fieldsets.length; i++ ) {
+    var fieldset = fieldsets.item( i );
+    if ( has_class( fieldset, 'repeatable' ) ) {
+        var id = fieldset.getElementsByTagName( 'div' ).item( 0 ).id;
+	repeatable_fields[ repeatable_fields.length ] = id;
+    }
+}
+
+for ( var i = 0; i < repeatable_fields.length; i++ ) {
+    var id = repeatable_fields[ i ];
+    var counter = document.getElementById( id + '_counter' );
+    if ( counter.value == 1 ) {
+        var button = document.getElementById( 'remove_' + id + '_button' );
+	button.disabled = true;
+	button.setAttribute( "style", "visibility: hidden" );
+    }
+}
+
+function add_field( id ) {
+
+    var counter = document.getElementById( id + '_counter' );
+    if ( counter.value == 1 ) {
+        var button = document.getElementById( 'remove_' + id + '_button' );
+	button.disabled = false;
+	button.removeAttribute( "style" );
+    }
+
+    var block = document.getElementById( id );
+    var field = block.getElementsByTagName( 'div' ).item( 0 );
+    var new_field = field.cloneNode( true );
+
+    var spans = new_field.getElementsByTagName( 'span' );
+    for ( var i = 0; i < spans.length; i++ ) {
+    	var span = spans.item( i );
+	if ( has_class( span, 'error_message' ) ) {
+	    span.parentNode.removeChild( span );
+	    break;
+	}
+    }
+    var inputs = new_field.getElementsByTagName( 'input' );
+    for ( var i = 0; i < inputs.length; i++ ) {
+        var input = inputs.item( i );
+        if ( input.type == 'text') input.value = '';
+    }
+    var selects = new_field.getElementsByTagName( 'select' );
+    for ( var i = 0; i < selects.length; i++ ) {
+        selects.item( i ).value = '';
+    }
+
+    block.appendChild( new_field );
+    counter.value++;
+}
+
+function remove_field( button ) {
+
+    var field = button.parentNode.parentNode;
+    var block = field.parentNode;
+    block.removeChild( field );
+
+    var counter = document.getElementById( block.id + '_counter' );
+    counter.value--;
+
+    if ( counter.value == 1 ) {
+        var button = document.getElementById( 'remove_' + block.id + '_button' );
+	button.disabled = true;
+	button.setAttribute( "style", "visibility: hidden" );
+    }
+}
+
+</script>

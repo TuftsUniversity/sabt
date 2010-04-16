@@ -1,0 +1,1 @@
+pastorize --mode offline --style multiple --destination . --class_prefix TAPER sa.xsd

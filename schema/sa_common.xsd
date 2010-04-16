@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema elementFormDefault="qualified" version="1.0"
+	    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:simpleType name="datePartial">
+    <xsd:union>
+      <xsd:simpleType><xsd:restriction base="xsd:date"/></xsd:simpleType>
+      <xsd:simpleType><xsd:restriction base="xsd:gYearMonth"/></xsd:simpleType>
+      <xsd:simpleType><xsd:restriction base="xsd:gYear"/></xsd:simpleType>
+    </xsd:union>
+  </xsd:simpleType>
+
+  <xsd:complexType name="producer">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="id" type="xsd:string" />
+        <xsd:attribute name="email" type="xsd:string" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="auditDate">
+    <xsd:attribute name="date" type="xsd:date" use="required" />
+    <xsd:attribute name="by" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+</xsd:schema>

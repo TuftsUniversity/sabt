@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema elementFormDefault="qualified" version="1.0"
+	    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:include schemaLocation="sa_common.xsd" />
+
+  <xsd:complexType name="rsaDoc">
+    <xsd:sequence>
+      <xsd:element name="history">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="activation" type="xsd:date" minOccurs="0" />
+            <xsd:element name="producerEndorsement" type="xsd:date" />
+            <xsd:element name="archiveEndorsement" type="xsd:date" />
+            <xsd:element name="expiration" type="xsd:date" minOccurs="0" />
+            <xsd:element name="audit">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="created" type="auditDate" minOccurs="0" />
+                  <xsd:element name="edited" type="auditDate" minOccurs="0" maxOccurs="unbounded" />
+                  <xsd:element name="committed" type="auditDate" minOccurs="0" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      
+      <!-- ### Archive -->
+      
+      <!--     Archive ID -->
+      <xsd:element name="archiveId" type="xsd:string" />
+      
+      <!--     Warrant to Collect -->
+      <xsd:element name="warrantToCollect" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+      <!-- ### Ingest Project Management -->
+
+      <!--     Accession Number -->
+      <xsd:element name="accessionNumber" type="xsd:string" minOccurs="0" />
+      
+      <!--     Activity Log Number -->
+      <xsd:element name="activityLogNumber" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+      <!--     Survey Report ID -->
+      <xsd:element name="surveyReportId" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+      
+      <!-- ### Producer -->
+      
+      <!--     Records Creator Records -->
+      <xsd:element name="recordsCreator" type="producer" maxOccurs="unbounded" />
+
+      <!--     Record Producer -->
+      <xsd:element name="recordsProducer" type="producer" maxOccurs="unbounded" />
+      
+      <!--     Recordkeeping System -->
+      <xsd:element name="recordkeepingSystem" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+
+      <!-- ### Records -->
+
+      <!--     General Records Description -->
+      <xsd:element name="generalRecordsDescription" type="xsd:string" />
+
+      <!--     Record Type Record -->
+      <xsd:element name="recordType" type="xsd:string" />
+      
+      <!--     Format Type -->
+      <xsd:element name="formatType" type="xsd:string" maxOccurs="unbounded" />
+
+      <!--     Date Span -->
+      <xsd:element name="dateSpan" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="start" type="datePartial" use="required" />
+          <xsd:attribute name="end" type="datePartial" use="required" />
+        </xsd:complexType>
+      </xsd:element>
+      
+      <!--     Extent -->
+      <xsd:element name="extent" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="units" type="xsd:string" use="required" />
+          <xsd:attribute name="value" type="xsd:float" use="required" />
+        </xsd:complexType>
+      </xsd:element>
+
+
+      <!--     Copyright -->
+      <xsd:element name="copyright" type="xsd:string" maxOccurs="unbounded" />
+      
+      <!--     Access -->
+      <xsd:element name="access" type="xsd:string" maxOccurs="unbounded" />
+      
+      <!--     Arrangement and Naming Scheme -->
+      <xsd:element name="arrangementAndNamingScheme" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+      <!--     Retention Period -->
+      <xsd:element name="retentionPeriod" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+
+      <!--     Retention Alert Date -->
+      <xsd:element name="retentionAlertDate" type="xsd:date" minOccurs="0" maxOccurs="unbounded" />
+      
+      <!--     SIP Creation and Transfer -->
+      <xsd:element name="sipCreationAndTransfer" type="xsd:string" maxOccurs="unbounded" />
+      
+      <!--     SIP transfer drop box location -->
+      <xsd:element name="dropboxUrl" type="xsd:anyURI" maxOccurs="unbounded" />
+      
+      <!--     Transfer Date -->
+      <xsd:element name="transferDate" type="xsd:date" />
+      
+      <!-- ### Archival Management -->
+
+      <!--     SIP to AIP -->
+      <xsd:element name="sipToAip" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+
+      <!--     Archival Description Standard -->
+      <xsd:element name="archivalDescriptionStandard" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+      
+      <!--     Respect de Fonds -->
+      <xsd:element name="respectDeFonds" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+
+    </xsd:sequence>
+
+    <xsd:attribute name="schemaVersion" type="xsd:token" use="required" />
+    <xsd:attribute name="id" type="xsd:ID" use="required" />
+    <xsd:attribute name="standing" type="xsd:IDREF" />
+  </xsd:complexType>
+  
+  <xsd:element name="regularSubmissionAgreement" type="rsaDoc" />
+  
+</xsd:schema>

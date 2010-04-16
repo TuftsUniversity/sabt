@@ -1,0 +1,86 @@
+method: post
+
+elements:
+
+      - type: Checkboxgroup
+        name: sipCreationAndTransfer
+        label: 'How have the records been prepared for transfer?  (Check all that apply)'
+        options:
+          - [ 'label_box', 'Labelled Box' ]
+          - [ 'label_folders', 'Labelled Folders' ]
+          - [ 'burn_or_copy_to_media', 'Burned or Copied to Media' ]
+          - [ 'create_inventory', 'Created Inventory' ]
+        constraint: Required
+
+      - type: Textarea
+        name: generalRecordsDescription
+        label: 'Transfer notes: Please provide a narrative describing the records, the records creator, and any special considerations for these records'
+        rows: 5
+        constraint: Required
+
+      - type: RepeatableFieldset
+        name: extent
+        legend: Extents
+        elements:
+          - type: Text
+            name: extent_value
+            label: Number of units
+          - type: Select
+            name: extent_units
+            options:
+              - [ '', '- Type of unit -' ]
+              - [ 'box', 'Box' ]
+              - [ 'cd_dvd', 'CD / DVD' ]
+              - [ 'binder_folder', 'Binder / Folder' ]
+              - [ 'file_directory', 'File / Directory' ]
+              - [ 'bytes', 'Bytes' ]
+              - [ 'other', 'Other' ]
+
+      - type: Checkboxgroup
+        name: formatType
+        label: 'Format of the records (Check all that apply)'
+        constraint: Required
+        options:
+          - [ 'paper', 'Paper' ]
+          - [ 'photographic_prints', 'Photographic Prints' ]
+          - [ 'artifacts', 'Artifacts' ]
+          - [ 'analog_media', 'Analog Media (tapes, video, etc.)' ]
+          - [ 'digital', 'Digital' ]
+
+      - type: RepeatableFieldset
+        name: dateSpan
+        legend: Date spans of the records
+        elements: 
+          - type: Text
+            name: dateSpan_start
+            label: Beginning year
+            attrs:
+              size: 4
+              maxlength: 4
+          - type: Text
+            name: dateSpan_end
+            label: Ending year
+            attrs:
+              size: 4
+              maxlength: 4
+
+      - type: Select
+        name: arrangementAndNamingScheme
+        label: 'Arrangement, organizational and/or naming system'
+        options:
+          - [ 'alphabetical', 'Alphabetical' ]
+          - [ 'chronological', 'Chronological' ]
+          - [ 'subject', 'Subject' ]
+          - [ 'loc', 'Library of Congress' ]
+
+      - type: Select
+        name: recordkeepingSystem
+        label: 'Current or previous storage system(s) for the records'
+        options:
+          - [ 'not_applicable', 'Not Applicable' ]
+
+
+
+      - type: Submit
+        name: submit_button
+        value: Create this Regular Submission Agreement

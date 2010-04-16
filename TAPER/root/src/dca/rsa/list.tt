@@ -1,0 +1,83 @@
+[% IF deleted_rsas %]
+<div class="success_box">
+Deleted [% deleted_rsas %] RSA[% IF deleted_rsas != 1 %]s[% END %].
+</div>
+[% END %]
+
+[% IF archive %]
+[% page_title = 'Archived RSAs' %]
+<h2>Past submissions</h2>
+[% ELSE %]
+[% page_title = 'Draft RSAs' %]
+<h2>Draft RSAs</h2>
+[% END %]
+
+<form method="POST" action="">
+<p>
+<table>
+<tr>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>Endorsement date</th>
+<th>Creator</th>
+<th>Record type</th>
+[% IF archive %]
+<th>Inventory documents</th>
+[% END %]
+</tr>
+[% FOREACH rsa = rsas %]
+<tr>
+<td><input name="rsa" type="checkbox" value="[% rsa.id %]" /></td>
+<td><a href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/edit' ) %]">Edit</a></td>
+<td><a onclick="return confirm( 'Warning: You are about to permanently delete this RSA.' )" href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/delete' ) %]">Delete</a></td>
+<td>[% rsa.producerEndorsement.ymd %]</td>
+<td>[% rsa.creator %]</td>
+<td>[% rsa.recordType %]</td>
+[% IF archive %]
+<td>
+[% IF deleted_inventory_rsa == rsa.id %]
+<div class="success_box">Deleted [% deleted_inventory %]
+document[% IF deleted_inventory != 1 %]s[% END %]
+</span>
+[% ELSE %]
+[% docs = rsa.inventory_documents.size %]
+[% IF docs %]
+[% docs %] document[% IF docs != 1 %]s[% END %]
+<br />
+<a href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/inventory' ) %]">Download</a>&nbsp;&nbsp;<a onclick="return confirm_delete_inventory([% docs %])" href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/delete_inventory' ) %]">Delete</a>
+[% END %]
+</td>
+[% END %]
+</tr>
+[% END %]
+[% END %]
+</table>
+</p>
+[% IF archive %]
+<input type="submit" name="download" value="Download selected RSA XML" />
+[% END %]
+<input type="submit" name="delete" value="Delete selected RSA"
+       onclick="return confirm_delete_rsas( this.form )" />
+</form>
+
+<script type="text/javascript">
+function confirm_delete_inventory( n ) {
+    return confirm( 'Warning: You are about to permanently delete ' + 
+    	   	    n + ' inventory document' + ( n == 1 ? '' : 's' ) + '.' );
+}
+
+function confirm_delete_rsas( form ) {
+    var n = 0;
+    var controls = form.elements;
+    for ( var i = 0; i < controls.length; i++ ) {
+    	var control = controls.item( i );
+	if ( control.name == 'rsa' && control.checked )
+	   n++;
+    }
+    if ( n > 0 )
+        return confirm( 'Warning: You are about to permanently delete ' + 
+    	       		n + ' RSA' + ( n == 1 ? '' : 's' ) + '.' );
+    return true;
+}
+</script>

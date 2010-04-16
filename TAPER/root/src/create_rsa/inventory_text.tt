@@ -1,0 +1,13 @@
+[% page_title = 'Add RSA inventory text' %]
+
+<h2>Adding a text inventory</h2>
+
+<p>
+Please type in some text that describes this RSA's inventory.
+</p>
+
+<p>
+<a href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/upload' ) %]">Click here if you'd rather upload inventory files, instead.</a>
+</p>
+
+[% form %]

@@ -1,0 +1,11 @@
+[% page_title = 'Unregistered user' %]
+
+<h1>Unregistered user</h1>
+
+<p>
+While you have logged in with a valid Tufts user account, we don't recognize you as a registered user of the Submission Agreement Builder tool. Therefore, you cannot use the tool at this time.
+<p>
+
+<p>
+In order to gain access to this tool via this Tufts user account, please contact somebody@example.com.
+</p>

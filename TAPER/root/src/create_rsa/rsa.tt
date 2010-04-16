@@ -1,0 +1,23 @@
+[%# RSA-creation form for 'ordinary', non-DCA users. %]
+
+[% page_title = 'Create an RSA' %]
+
+<h2>Create an RSA</h2>
+
+[% IF form.submitted %]
+<div class="alert_box">
+<p>
+RSA not created.  Please correct the fields highlighted below.
+</p>
+</div>
+[% END %]
+
+[% form %]
+
+<h2>SSA information</h2>
+
+<p>The following information will be automatically added to this document, inherited from its SSA.</p>
+
+<p>[% INCLUDE ssa_information.tt %]</p>
+
+[% INCLUDE repeating_field_js.tt %]

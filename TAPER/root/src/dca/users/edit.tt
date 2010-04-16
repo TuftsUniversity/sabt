@@ -1,0 +1,25 @@
+[% page_title = 'Edit User' %]
+
+<h2>Edit User</h2>
+
+[% IF form.submitted_and_valid %]
+<div class="success_box">
+<p>
+User updated.
+</p>
+</div>
+[% ELSIF form.submitted %]
+<div class="alert_box">
+<p>
+User not updated.  Please correct the fields highlighted below.
+</p>
+</div>
+[% END %]
+
+<p><a href="[% Catalyst.uri_for( '/dca/users/list' ) %]">Return to user list</a></p>
+
+<p>Use the form below to modify this user.</p>
+
+[% form %]
+
+[% INCLUDE user_office_js.tt %]

@@ -1,0 +1,7 @@
+[% page_title = 'SABT Login' %]
+
+<h1>Submission Agreement Builder Tool</h1>
+
+<p>Please log in using your Tufts account.</p>
+
+[% form %]

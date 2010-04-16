@@ -1,0 +1,22 @@
+Dear Tufts DCA Staff,
+
+The user [% Catalyst.taper_user.username %] has just submitted a new Regular Submission Agreement draft, with the ID [% rsa.id %].
+
+Creator[% IF rsa.recordsCreator.size > 1 %]s[% END %] of the records:
+[% FOR creator = rsa.recordsCreator %]
+  Name:  [% creator.name %]
+  ID:    [% creator.id %]
+  Email: [% creator.email %]
+[% END %]
+Person or group authorized to transfer the records to the archives:
+[% FOR producer = rsa.recordsProducer %]
+  Name:  [% producer.name %]
+  ID:    [% producer.id %]
+  Email: [% producer.email %]
+[% END %]
+To view and edit this draft online, please visit the following link:
+
+[% Catalyst.uri_for( '/dca/rsa/' _ rsa.id _ '/edit' ) %]
+
+Sincerely,
+The TAPER Submission Agreement Builder Tool ([% Catalyst.uri_for( '/' ) %])

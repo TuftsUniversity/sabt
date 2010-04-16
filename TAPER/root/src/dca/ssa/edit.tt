@@ -1,0 +1,25 @@
+[% page_title = 'Edit SSA' %]
+
+<h2>Edit this SSA</h2>
+
+[% IF form.submitted_and_valid %]
+<div class="success_box">
+<p>
+SSA successfully updated.
+</p>
+</div>
+[% ELSIF form.submitted %]
+<div class="alert_box">
+<p>
+SSA not updated.  Please correct the fields highlighted below.
+</p>
+</div>
+[% END %]
+
+<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to SSA list</a></p>
+
+<p>Use the form below to modify this SSA.</p>
+
+[% form %]
+
+[% INCLUDE repeating_field_js.tt %]

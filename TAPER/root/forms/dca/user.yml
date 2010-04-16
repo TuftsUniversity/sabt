@@ -1,0 +1,41 @@
+# HTML::FormFu config for user editing form.
+
+elements:
+  - type: Text
+    name: username
+    label: Username
+    attributes:
+      class: username
+    constraint: Required
+
+  - type: Text
+    name: first_name
+    label: First name
+    attributes:
+      class: name
+
+  - type: Text
+    name: last_name
+    label: Last name
+    attributes:
+      class: name
+
+  - type: Checkbox
+    name: is_dca
+    label: DCA admin?
+
+  - type: RepeatableFieldset
+    name: office
+    legend: Offices
+    elements:
+      - type: Hidden
+        name: office_id
+      - type: Label
+        name: office_name
+        retain_default: 1
+      - type: RepeatableCheckbox
+        name: office_active
+        label: Active?
+        retain_default: 1
+
+  - type: Submit

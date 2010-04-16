@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This is a minimal RSA file. It does not include several elements that the
+schema lists as optional.
+It is suitable for use as testing against the the output of the Submission
+Agreement Builder tool.
+-->
+
+<regularSubmissionAgreement
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" 
+   xsd:noNamespaceSchemaLocation="rsa.xsd"
+   schemaVersion="1.0"
+   id="RSA2009-01" standing="SA2009-01">
+
+  <!-- Submission Agreement Management -->
+  <history>
+    <activation>2009-02-09</activation>
+    <producerEndorsement>2009-02-09</producerEndorsement>
+    <archiveEndorsement>2009-02-09</archiveEndorsement>
+    <audit>
+      <created date="2009-02-01" by="Test Tester" />
+      <committed date="2009-02-09" by="Test Tester" />
+    </audit>
+  </history>
+  
+  <!-- Archive -->
+  <archiveId>Digital Collections and Archives, Tufts University</archiveId>
+  <warrantToCollect>University Records Policy, http://dca.tufts.edu/?pid=19</warrantToCollect>
+  
+  <!-- Producer -->
+  <recordsCreator id="RC0034">RC0034</recordsCreator>
+  <recordsProducer>Department of Widget Science, Tufts University</recordsProducer>
+  <recordkeepingSystem>RK0009</recordkeepingSystem>
+  
+  <!-- Records -->
+  <generalRecordsDescription>Paragraph goes here.</generalRecordsDescription>
+  <recordType>910 Meeting Minutes and Agenda, http://dca.tufts.edu/?pid=63#rs910</recordType>
+  <formatType>photographic_prints</formatType>
+  <formatType>digital_media</formatType>
+  <dateSpan start="1995" end="2001" />
+  <extent value="12" units="cu. ft." />
+  <copyright>Copyright holder: Allen Anderson. Licensing Agreement with Archive: See Anderson-DCA_copyrightlicense_2008-12-12.pdf</copyright>
+  <access>Category 3: General University Records, Closed 20 years from records creation. http://dca.tufts.edu/?pid=17</access>
+  <arrangementAndNamingScheme>chronological</arrangementAndNamingScheme>
+  <retentionPeriod>Retain Close of Grant Project + 7 Years, then confidentially destroy. Director of the Archive and Professor John Johnson, Department of Widget Science review records before executing disposition.</retentionPeriod>
+  
+  <!-- Producer to Archive -->
+  <sipCreationAndTransfer>label_box</sipCreationAndTransfer>
+  <sipCreationAndTransfer>create_inventory</sipCreationAndTransfer>
+  <dropboxUrl>http://example.com/dropbox</dropboxUrl>
+  <transferDate>2009-02-09</transferDate>
+  
+  <!-- Archive Management -->
+  <sipToAip>Maintain tifs, create full and thumbnail datastreams</sipToAip>
+  <archivalDescriptionStandard>Encoded Archival Description (EAD). http://www.loc.gov/ead/</archivalDescriptionStandard>
+  <respectDeFonds>UA041 Department of Widget Science records</respectDeFonds>
+
+</regularSubmissionAgreement>

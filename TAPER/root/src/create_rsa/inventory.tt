@@ -1,0 +1,12 @@
+[% page_title = 'Attach inventory to RSA' %]
+
+<h2>Attach an inventory</h2>
+
+<p>You have successfully created a regular submission agreement (ID: [% rsa.id %]). You must now attach inventory information to it.</p>
+
+<p>Please choose one of the following two options.</p>
+
+<ul>
+<li><a href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/text' ) %]">Type (or paste in) a plain text inventory for this RSA.</a></li>
+<li><a href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/upload' ) %]">Upload one or more files (e.g. Excel documents) to attach to this RSA as its inventory.</a></li>
+</ul>

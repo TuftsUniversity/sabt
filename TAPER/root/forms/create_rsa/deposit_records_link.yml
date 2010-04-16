@@ -1,0 +1,11 @@
+method: post
+
+indicator: submit
+
+id: submission_complete_form
+
+elements:
+
+      - type: Submit
+        name: submit
+        value: "Complete this submission"

@@ -1,0 +1,23 @@
+method: post
+
+elements:
+      - type: Text
+        label: Username
+        name: username
+        id: login_username_input
+        attributes:
+          class: username
+        constraints:
+          - type: Required
+      - type: Password
+        label: Password
+        name: password
+        id: login_password_input
+        constraints:
+          - type: Required
+      - type: Submit
+        name: login_form_submit
+        value: Log in
+
+stash:
+  bad_auth_message: Sorry, that username / password combination is not valid. Please try again.

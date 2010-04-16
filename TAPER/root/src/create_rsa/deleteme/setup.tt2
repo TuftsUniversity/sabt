@@ -1,0 +1,30 @@
+[%
+# Office / SSA chooser.
+
+USE scalar;
+offices = Catalyst.local_user.offices;
+%]
+
+<h1>Create an RSA</h1>
+
+<p>To create a regular submission agreement, please confirm the office and standard submission agreement (SSA) which you'd like to use. Then click the "Continue" button.
+</p>
+
+<form method="post">
+[% FOREACH office = offices %]
+<h2>[% office.name %]</h2>
+  [% FOREACH ssa = office.ssas %]
+    <p>
+    <input type="radio" name="ssa_id" value="[% ssa.id %]" 
+    [%# If there's only one SSA on this screen, pre-select it. %]
+    [% IF (offices.size == 1) && (ssas.size == 1) %]
+      checked="checked"
+    [% END %]
+    /> [% ssa.name %]</p>
+  [% END %]
+[% END %]
+
+<p>
+<input type="submit" value="Continue &rarr;" name="rsa_setup_submit" />
+</p>
+</form>

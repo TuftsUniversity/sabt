@@ -1,0 +1,31 @@
+[% page_title = 'Manage Offices' %]
+
+<h2>Manage Offices</h2>
+
+[% IF form.submitted_and_valid %]
+<div class="success_box">
+<p>Office added.</p>
+</div>
+[% END %]
+
+<p>From this screen, you can either choose an existing office to edit,
+or add a new office.</p>
+
+<h3>Add a new office</h3>
+
+[% form %]
+
+<h3>Edit an office</h3>
+
+<p>Click the name of an office below to edit it.
+<ul>
+[% model = Catalyst.model( 'TAPERDB::Office' ) %]
+[% FOR office = model.search(undef, { order_by => 'name' }) %]
+    <li>
+    <a href="[% Catalyst.uri_for( '/dca/offices/office/' _ office.id _ '/edit' ) %]">
+    [% office.name %]
+    </a>
+    </li>
+[% END %]
+</ul>
+</p>

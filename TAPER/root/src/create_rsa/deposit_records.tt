@@ -1,0 +1,11 @@
+<h2>Deposit electronic records</h2>
+
+<p>
+The standing submission agreement that this new submission is
+based on, [% rsa.recordType %], uses a dropbox for electronic records.
+</p>
+
+<p>Do you have electronic files to deposit permanently to the archives at this time?</p>
+
+[% form %]
+

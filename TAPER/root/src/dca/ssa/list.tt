@@ -1,0 +1,42 @@
+[% page_title = 'Manage SSAs' %]
+
+[% USE scalar %]
+
+<h2>Manage SSAs</h2>
+
+[% IF creation_was_successful %]
+<div class="success_box">
+<p>
+New SSA created successfully.
+</p>
+</div>
+[% END %]
+
+<p>From this screen, you can either choose an existing SSA to edit, or create a new SSA.</p>
+
+<h3>Create an SSA</h3>
+
+<p><a href="[% Catalyst.uri_for ('/dca/ssas/create') %]">Click here to create a new Standing Submission Agreement.</a></p>
+
+<h3>Edit a SSA</h3>
+
+[% IF Catalyst.model( 'TAPERDB::Ssa' ).all %]
+<p>Click the title of any SSA below to edit it.</p>
+    [% FOREACH office = offices %]
+        [% ssas = Catalyst.model( 'SSA' ).all_for_office( office.id ) %]
+        [% IF ssas %]
+            <h4>[% office.name %]</h4>
+            <ul>
+            [% FOREACH ssa = ssas %]
+                <li>
+                <a href="[% Catalyst.uri_for( '/dca/ssas/ssa/' _ ssa.id _ '/edit' ) %]">
+                [% ssa.recordType %]
+                </a>
+                </li>
+            [% END %]
+            </ul>
+         [% END %]
+     [% END %]
+[% ELSE %]
+<p>Actually, there don't seem to be any SSAs in the system right now...</p>
+[% END %]
