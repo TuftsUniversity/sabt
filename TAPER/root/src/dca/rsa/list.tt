@@ -1,22 +1,21 @@
 [% IF deleted_rsas %]
 <div class="success_box">
-Deleted [% deleted_rsas %] RSA[% IF deleted_rsas != 1 %]s[% END %].
+Deleted [% deleted_rsas %] Transfer Agreement Form[% IF deleted_rsas != 1 %]s[% END %].
 </div>
 [% END %]
 
 [% IF archive %]
-[% page_title = 'Archived RSAs' %]
-<h2>Past submissions</h2>
+[% page_title = 'Approved Transfer Agreement Forms' %]
+<h2>Approved Transfer Agreement Forms</h2>
 [% ELSE %]
-[% page_title = 'Draft RSAs' %]
-<h2>Draft RSAs</h2>
+[% page_title = 'Draft Transfer Agreement Forms' %]
+<h2>Draft Transfer Agreement Forms</h2>
 [% END %]
 
 <form method="POST" action="">
 <p>
 <table>
 <tr>
-<th>&nbsp;</th>
 <th>&nbsp;</th>
 <th>&nbsp;</th>
 <th>Endorsement date</th>
@@ -30,7 +29,6 @@ Deleted [% deleted_rsas %] RSA[% IF deleted_rsas != 1 %]s[% END %].
 <tr>
 <td><input name="rsa" type="checkbox" value="[% rsa.id %]" /></td>
 <td><a href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/edit' ) %]">Edit</a></td>
-<td><a onclick="return confirm( 'Warning: You are about to permanently delete this RSA.' )" href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/delete' ) %]">Delete</a></td>
 <td>[% rsa.producerEndorsement.ymd %]</td>
 <td>[% rsa.creator %]</td>
 <td>[% rsa.recordType %]</td>
@@ -55,9 +53,9 @@ document[% IF deleted_inventory != 1 %]s[% END %]
 </table>
 </p>
 [% IF archive %]
-<input type="submit" name="download" value="Download selected RSA XML" />
+<input type="submit" name="download" value="Download selected Agreement Forms" />
 [% END %]
-<input type="submit" name="delete" value="Delete selected RSA"
+<input type="submit" name="delete" value="Delete selected Agreement Forms"
        onclick="return confirm_delete_rsas( this.form )" />
 </form>
 
@@ -77,7 +75,7 @@ function confirm_delete_rsas( form ) {
     }
     if ( n > 0 )
         return confirm( 'Warning: You are about to permanently delete ' + 
-    	       		n + ' RSA' + ( n == 1 ? '' : 's' ) + '.' );
+    	       		n + ' Transfer Agreement Form' + ( n == 1 ? '' : 's' ) + '.' );
     return true;
 }
 </script>

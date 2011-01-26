@@ -1,22 +1,45 @@
 [%# RSA-creation form for 'ordinary', non-DCA users. %]
 
-[% page_title = 'Create an RSA' %]
+[% page_title = 'Fill out a Transfer Agreement Form' %]
 
-<h2>Create an RSA</h2>
+<h2>Transfer Agreement Form</h2>
 
 [% IF form.submitted %]
 <div class="alert_box">
 <p>
-RSA not created.  Please correct the fields highlighted below.
+The Transfer Agreement Form is not complete.  Please correct the fields highlighted below.
 </p>
 </div>
 [% END %]
 
 [% form %]
 
-<h2>SSA information</h2>
+<script type="text/javascript">
 
-<p>The following information will be automatically added to this document, inherited from its SSA.</p>
+// Show the 'type of unit' text field if an extent units selection is 'other',
+// otherwise hide it.
+function showOther( select ) {
+    var units = select.options[select.selectedIndex].value;
+    var div = select.parentNode.parentNode;
+    var other = div.getElementsByTagName( 'span' ).item( 2 );
+    if ( units == 'other' ) {
+        other.removeAttribute( 'style' );
+    } else {
+        other.setAttribute( 'style', 'display: none' );
+    }
+}
+
+var rows = document.getElementById( 'extent' ).getElementsByTagName( 'div' );
+for ( var i = 0; i < rows.length; i++ ) {
+    var span = rows[ i ].getElementsByTagName( 'span' ).item( 1 );
+    showOther( span.getElementsByTagName( 'select' ).item( 0 ) );
+}
+
+</script>
+
+<h2>Template information</h2>
+
+<p>The following information will be automatically added to this document, inherited from its transfer agreement template.</p>
 
 <p>[% INCLUDE ssa_information.tt %]</p>
 

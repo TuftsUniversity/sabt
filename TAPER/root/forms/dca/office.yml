@@ -1,14 +1,11 @@
 # HTML::FormFu config for office editing form.
 
 elements:
-  - type: Multi
-    elements:
+  - type: Text
+    name: name
+    label: Name
+    force_default: 1
+    constraint: Required
 
-      - type: Text
-        name: name
-        label: Name
-        force_default: 1
-        constraint: Required
-
-      - type: Submit
-        value: Submit
+  - type: Submit
+    value: Update office

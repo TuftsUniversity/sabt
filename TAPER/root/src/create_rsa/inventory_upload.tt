@@ -1,20 +1,16 @@
-[% page_title = 'Upload RSA inventory files' %]
+[% page_title = 'Upload transfer agreement inventory files' %]
 
 <h2>Uploading inventory files</h2>
 
 <p>
-Please attach one or more files (e.g. Excel documents) that describe this RSA's inventory.
-</p>
-
-<p>
-If you have more than one file to attach, click the "Add another file" button for each one, and then fill in the file-upload field that appears. (If you change your mind about attaching more files, it's OK to leave some fields blank.)
-</p>
-
-<p>
-<a href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/text' ) %]">Click here if you'd rather simply type in a plain-text inventory description, instead.</a>
+Please attach one or more files (e.g. Excel documents) that describe this transfer agreement's inventory.
 </p>
 
 [% form %]
+
+<p>
+<big><a class='plaintextinventorylink' href="[% Catalyst.uri_for( '/create_rsa/inventory/' _ rsa.id _ '/text' ) %]">Click here if you'd rather type in a plain text inventory description.</a></big>
+</p>
 
 <script type="text/javascript">
 

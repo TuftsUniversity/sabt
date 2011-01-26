@@ -23,8 +23,14 @@ __PACKAGE__->belongs_to("office", "TAPER::Schema::Office", { id => "office" });
 # Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-03-10 23:08:56
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:22Hh9FZkntYfTWhXZtkFag
 
+use File::Spec;
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+sub absolute_path {
+    my $self = shift;
+
+    return File::Spec->rel2abs( $self->path, TAPER->config->{ssa_directory} );
+}
+
 1;
 
 =head1 NAME
@@ -58,7 +64,13 @@ This SSA's database ID.
 
 =item path
 
-The filesystem path of this SSA's XML file.
+The filesystem path of this SSA's XML file.  If the path is relative,
+it is relative to the path specified by the ssa_directory
+configuration setting (in taper.conf).
+
+=item absolute_path
+
+I<Read-only.> The absolute filesystem path of this SSA's XML file.
 
 =item office
 
@@ -74,7 +86,8 @@ or scalar context) of all the RSAs associated with this SSA.
 =head1 AUTHOR
 
 Jason McIntosh <jmac@appleseed-sc.com>
+Doug Orleans <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by Tufts University.
+Copyright (c) 2009-2010 by Tufts University.

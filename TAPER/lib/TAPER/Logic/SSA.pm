@@ -32,7 +32,7 @@ sub new_from_record {
     my $class = shift;
     my ( $ssa_record ) = @_;
 
-    my $ssa_doc = $parser->parse_file( $ssa_record->path );
+    my $ssa_doc = $parser->parse_file( $ssa_record->absolute_path );
     
     my %ssa_creation_args = $class->fields_from_xml( $ssa_doc );
 
@@ -90,7 +90,7 @@ sub update {
     my $ssa_id = $ssa_record->id;
     $root->setAttribute( id => "$ID_PREFIX-$ssa_id" );
 
-    my $ssa_path = $ssa_record->path;
+    my $ssa_path = $ssa_record->absolute_path;
     
     # Open a filehandle, and write the SSA file.
     open my $ssa_handle, '>', $ssa_path
@@ -188,7 +188,8 @@ B<Read-only>. Returns the ID field of this SSA's database record.
 
 This class method returns a new SSA object given a database record, an
 object of class TAPER::Model::TAPERDB::Ssa.  The new object's fields
-are populated from the XML file pointed to by the record object's path field.
+are populated from the XML file pointed to by the record object's
+absolute_path field.
 
 =item update
 
@@ -214,9 +215,10 @@ based on the SSA object's field values.
 =head1 AUTHOR
 
 Jason McIntosh, Appleseed Software Consulting <jmac@appleseed-sc.com>
+Doug Orleans, Appleseed Software Consulting <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by Tufts University.
+Copyright (c) 2009-2010 by Tufts University.
 
 =cut

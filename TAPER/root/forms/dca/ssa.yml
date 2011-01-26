@@ -2,6 +2,20 @@
 
 method: post
 
+default_args:
+    elements:
+        Date:
+            field_order: [ 'year', 'month', 'day' ]
+            day:
+              prefix: '- Day -'
+            month:
+              prefix: '- Month -'
+            year:
+              prefix: '- Year -'
+              less: 10
+              plus: 10
+            auto_inflate: 1
+
 elements:
 
       - type: RepeatableFieldset
@@ -45,7 +59,7 @@ elements:
             name: recordsProducer_email
             constraint: Email
 
-      # The 'office' menu gets populated by the controller.
+      # The 'office' menu is populated by the controller.
       - type: Select
         name: office_id
         label: Office
@@ -55,15 +69,6 @@ elements:
       - type: RequiredDate
         label: Archive endorsement
         name: archiveEndorsement
-        day:
-          prefix: '- Day -'
-        month:
-          prefix: '- Month -'
-        year:
-          prefix: '- Year -'
-          less: 10
-          plus: 10
-        auto_inflate: 1
 
       - type: Text
         label: Record type record
@@ -79,44 +84,27 @@ elements:
         name: access
         legend: Access
 
-      - type: Text
-        name: dropboxUrl
-        label: SIP transfer drop box URL
-        constraints:
-          - Required
-          - type: Regex
-            common:
-              - URI
-
       - type: Fieldset
         legend: Optional fields
         elements:
 
+        - type: Text
+          name: dropboxUrl
+          label: Transfer drop box URL
+          constraints:
+            - type: Regex
+              common:
+                - URI
+                - HTTP
+                - { '-scheme': 'https?' }
+
         - type: AllOrNoneDate
           name: activation
           label: Activation
-          day:
-            prefix: '- Day -'
-          month:
-            prefix: '- Month -'
-          year:
-            prefix: '- Year -'
-            less: 10
-            plus: 10
-          auto_inflate: 1
 
         - type: AllOrNoneDate
           name: expiration
           label: Expiration
-          day:
-            prefix: '- Day -'
-          month:
-            prefix: '- Month -'
-          year:
-            prefix: '- Year -'
-            less: 10
-            plus: 10
-          auto_inflate: 1
 
         - type: RepeatableFieldset
           name: retentionAlertDate
@@ -124,15 +112,6 @@ elements:
           elements:
             - type: RepeatedAllOrNoneDate
               name: retentionAlertDate
-              day:
-                prefix: '- Day -'
-              month:
-                prefix: '- Month -'
-              year:
-                prefix: '- Year -'
-                less: 10
-                plus: 10
-              auto_inflate: 1
 
         - type: RepeatableFieldset
           name: warrantToCollect
@@ -179,4 +158,4 @@ elements:
 
       - type: Submit
         name: ssa_submit
-        value: Create this SSA
+        value: Create this Transfer Template

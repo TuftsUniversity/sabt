@@ -1,9 +1,9 @@
 [% page_title = 'Home' %]
 
-<h1>TAPER Home</h1>
+<h1>Tufts Accessioning Program (TAPER) Home</h1>
 
 <p>This is the homepage of all the TAPER tools.</p>
 
-<h2><a href="[% Catalyst.uri_for( '/create_rsa' ) %]">Submission Agreement Builder</a></h2>
-<p>Use the Submission Agreement Builder tool to create Regular Submission Agreements (RSAs) based on existing Standing Submission Agreements (SSAs).</p>
+<h2><a href="[% Catalyst.uri_for( '/create_rsa' ) %]">Transfer Agreement Form</a></h2>
 
+<h2><a href="[% Catalyst.uri_for( '/preservation_rules' ) %]">View Preservation Rules</a></h2>

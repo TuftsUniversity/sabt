@@ -6,16 +6,10 @@ elements:
         name: sipCreationAndTransfer
         label: 'How have the records been prepared for transfer?  (Check all that apply)'
         options:
-          - [ 'label_box', 'Labelled Box' ]
-          - [ 'label_folders', 'Labelled Folders' ]
-          - [ 'burn_or_copy_to_media', 'Burned or Copied to Media' ]
+          - [ 'label_box', 'Labelled Box(es)' ]
+          - [ 'label_folders', 'Labelled Folder(s)' ]
           - [ 'create_inventory', 'Created Inventory' ]
-        constraint: Required
-
-      - type: Textarea
-        name: generalRecordsDescription
-        label: 'Transfer notes: Please provide a narrative describing the records, the records creator, and any special considerations for these records'
-        rows: 5
+          - [ 'none', 'None' ]
         constraint: Required
 
       - type: RepeatableFieldset
@@ -32,9 +26,15 @@ elements:
               - [ 'box', 'Box' ]
               - [ 'cd_dvd', 'CD / DVD' ]
               - [ 'binder_folder', 'Binder / Folder' ]
-              - [ 'file_directory', 'File / Directory' ]
+              - [ 'file', 'File' ]
+              - [ 'directory', 'Directory' ]
               - [ 'bytes', 'Bytes' ]
               - [ 'other', 'Other' ]
+            attrs:
+              onChange: 'showOther(this)'
+          - type: Text
+            name: extent_other_units
+            label: Type of unit
 
       - type: Checkboxgroup
         name: formatType
@@ -72,6 +72,13 @@ elements:
           - [ 'chronological', 'Chronological' ]
           - [ 'subject', 'Subject' ]
           - [ 'loc', 'Library of Congress' ]
+          - [ 'not_arranged', 'Not arranged' ]
+          - [ 'other', 'Other' ]
+
+      - type: Textarea
+        name: generalRecordsDescription
+        label: 'Transfer notes: Please provide any additional information, excluding an inventory, about the history of the records, the person or office that created the records, or any special considerations regarding the records such as physical condition and arrangement/organization.'
+        rows: 5
 
       - type: Select
         name: recordkeepingSystem
@@ -83,4 +90,4 @@ elements:
 
       - type: Submit
         name: submit_button
-        value: Create this Regular Submission Agreement
+        value: Add Inventory

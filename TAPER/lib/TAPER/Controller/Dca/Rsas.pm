@@ -72,6 +72,8 @@ sub edit_FORM_VALID {
     
     # Now have it update itself.
     $rsa->update_from_form( $form );
+
+    $c->forward( '_populate_preservation_rules_menu' );
 }
 
 sub edit_FORM_NOT_SUBMITTED {
@@ -85,6 +87,30 @@ sub edit_FORM_NOT_SUBMITTED {
     $rsa->populate_form( $form );
 }
 
+sub edit_FORM_RENDER {
+    my $self = shift;
+    my ( $c ) = @_;
+
+    $c->forward( '_populate_preservation_rules_menu' );
+}
+
+sub _populate_preservation_rules_menu : Private {
+    my $self = shift;
+    my ( $c ) = @_;
+
+    my $form = $c->stash->{form};
+    my $fields = $form->get_fields( 'sipToAip' );
+    my @rules = $c->model( 'TAPERDB::PreservationRule' )->search( undef, {
+        order_by => 'number' } );
+    for my $field ( @$fields ) {
+        $field->options(
+            [ [ '', '- Preservation Rule -' ],
+              map {
+                  [ $_->number, 'Rule ' . $_->number . ': ' . $_->description ]
+              } @rules ] );
+    }
+}
+
 sub inventory : Chained('rsa') {
     my $self = shift;
     my ( $c ) = @_;
@@ -92,6 +118,8 @@ sub inventory : Chained('rsa') {
     my $rsa = $c->stash->{rsa};
     $c->res->body( $rsa->inventory_zip );
     $c->res->content_type( 'application/zip' );
+    $c->res->header( 'Content-Disposition' =>
+                     'attachment; filename="inventory.zip"' );
 }
 
 sub delete_inventory : Chained('rsa') {
@@ -154,6 +182,8 @@ sub _list : Private {
 	else {
 	    $c->res->body( $c->model( 'RSA' )->zip( @$rsas ) );
 	    $c->res->content_type( 'application/x-zip-compressed' );
+            $c->res->header( 'Content-Disposition' =>
+                             'attachment; filename="agreements.zip"' );
 	    $c->detach;
 	}
     }
@@ -207,6 +237,7 @@ If the supplied RSA ID isn't valid, redirects the user to /dca.
 =item edit_FORM_SUBMITTED
 =item edit_FORM_VALID
 =item edit_FORM_NOT_SUBMITTED
+=item edit_FORM_RENDER
 
 Path: dca/rsas/rsa/$rsa_id/edit
 

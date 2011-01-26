@@ -76,6 +76,10 @@ div#extent .text input {
     width: 4em;
 }
 
+div#extent .select + .text input {
+    width: 10em;
+}
+
 div#datespan div {
     margin-bottom: 10px;
 }

@@ -1,28 +1,28 @@
-[% page_title = 'Edit RSA' %]
+[% page_title = 'Edit Transfer Agreement' %]
 
-<h2>Edit this RSA</h2>
+<h2>Edit Transfer Agreement</h2>
 
 [% IF form.submitted_and_valid %]
 <div class="success_box">
 <p>
-RSA successfully updated.
+Transfer Agreement successfully updated.
 </p>
 </div>
 [% ELSIF form.submitted %]
 <div class="alert_box">
 <p>
-RSA not updated.  Please correct the fields highlighted below.
+Transfer Agreement not updated.  Please correct the fields highlighted below.
 </p>
 </div>
 [% END %]
 
 [% IF is_final %]
-<p><a href="[% Catalyst.uri_for( '/dca/rsas/archive' ) %]">Return to Archived RSAs list</a></p>
+<p><a href="[% Catalyst.uri_for( '/dca/rsas/archive' ) %]">Return to Approved Transfer Agreement List</a></p>
 [% ELSE %]
-<p><a href="[% Catalyst.uri_for( '/dca/rsas/drafts' ) %]">Return to Draft RSAs list</a></p>
+<p><a href="[% Catalyst.uri_for( '/dca/rsas/drafts' ) %]">Return to Draft Transfer Agreement List</a></p>
 [% END %]
 
-<p>Use the form below to modify this RSA.</p>
+<p>Use the form below to modify this Transfer Agreement.</p>
 
 [% form %]
 

@@ -18,6 +18,25 @@ Office not updated.  Please correct the fields highlighted below.
 
 <p><a href="[% Catalyst.uri_for( '/dca/offices/list' ) %]">Return to office list</a></p>
 
-<p>Use the form below to modify this office.</p>
+<p>Use the form below to modify this office.  Use the button at the bottom to delete this office.</p>
 
 [% form %]
+
+<hr>
+<p>
+[% IF office.ssas %]
+This office cannot be deleted because there are [% office.ssas.size %]
+Transfer Templates associated with it.
+[% ELSE %]
+<form method="post" id="deleteForm"
+      action="[% Catalyst.uri_for( '/dca/offices/office/' _ office.id _ '/delete' ) %]">
+<input type="submit" onclick="return confirm_delete()"
+       name="delete" value="Delete office">
+</form>
+<script type="text/javascript">
+function confirm_delete() {
+    return confirm( 'Warning: You are about to permanently delete this office.' );
+}
+</script>
+[% END %]
+</p>

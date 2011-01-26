@@ -5,13 +5,18 @@
 [% IF user_added %]
 <div class="success_box">
 <p>
-User added.
+User [% user.username%] added.
+</p>
+</div>
+[% ELSIF user_deleted %]
+<div class="success_box">
+<p>
+User [% user.username %] deleted.
 </p>
 </div>
 [% END %]
 
-<p>From this screen, you can either choose an existing user to edit,
-or add a new user.</p>
+<p>From this screen, you can either add a new user or edit an existing user.</p>
 
 <h3>Add a new user</h3>
 

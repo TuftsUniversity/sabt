@@ -17,7 +17,8 @@ sub list_FORM_VALID {
     my $form = $c->stash->{form};
 
     my $name = $form->param_value( 'name' );
-    $c->model( 'TAPERDB::Office' )->create( { name => $name } );
+    my $office = $c->model( 'TAPERDB::Office' )->create( { name => $name } );
+    $c->stash->{office} = $office;
 
     # Clear the form so it can be used to add another office.
     # This depends on the fields having force_default = 1.
@@ -53,6 +54,24 @@ sub edit_FORM_VALID {
 
     $office->name( $form->param_value( 'name' ) );
     $office->update;
+}
+
+sub delete : Chained('office') Args(0) {
+    my $self = shift;
+    my ( $c ) = @_;
+
+    my $office = $c->stash->{office};
+    $c->flash->{office} = $office;
+
+    if ( !$office || $office->ssas > 0 ) {
+        $c->flash->{office_not_deleted} = 1;
+    } else {
+        $office->delete;
+        $c->flash->{office_deleted} = 1;
+    }
+
+    $c->res->redirect( $c->uri_for( '/dca/offices/list' ) );
+    $c->detach;
 }
 
 1;
@@ -102,6 +121,13 @@ Path: dca/offices/office/$office_id/edit
 
 Displays and handles a form that allows DCA staff to edit an office.
 
+=item delete
+
+Path: dca/offices/offices/$office_id/delete
+
+Deletes an office.  The office will not be deleted if it has any
+associated SSAs.
+
 =back
 
 =head1 AUTHOR
@@ -112,6 +138,6 @@ Doug Orleans, Appleseed Software Consulting <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by Tufts University.
+Copyright (c) 2009-2010 by Tufts University.
 
 =cut

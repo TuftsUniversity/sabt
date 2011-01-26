@@ -64,9 +64,9 @@ $mech->submit_form_ok(
     },
     'Submitted SSA edit form.' );
 
-$mech->content_like( qr/SSA successfully updated./, 'Successfully edited.' );
+$mech->content_like( qr/successfully updated./, 'Successfully edited.' );
 
-$mech->follow_link_ok( { text => 'Return to SSA list' }, 'List the SSAs' );
+$mech->follow_link_ok( { text_regex => qr/Return to/ }, 'List the SSAs' );
 
 $mech->follow_link_ok( { text => 'Test SSA 1' }, 'Edit SSA 1' );
 

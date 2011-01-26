@@ -72,7 +72,7 @@ $mech->set_fields(
 $mech->submit_form_ok( { fields => { } }, 'Submitted RSA form' );
 
 # Submit a plain-text inventory description.
-$mech->follow_link_ok( { text_regex => qr/plain-text/ },
+$mech->follow_link_ok( { text_regex => qr/text inventory/ },
 		       'Plain-text inventory description page' );
 $mech->submit_form_ok(
     { 

@@ -58,7 +58,7 @@ sub create_from_form {
         croak ('create_from_form() called with too few arguments');
     }
 
-    # Figure out this new SSA doc's filesystem path.
+    # Create the SSA directory if needed.
     my $ssa_dir = $c->config->{ssa_directory};
     unless ( -e $ssa_dir ) {
 	unless ( make_path( $ssa_dir ) ) {
@@ -70,11 +70,7 @@ sub create_from_form {
     # Create a new DB record for this SSA.
     my $ssa_record = $c->model( 'TAPERDB::Ssa' )->create( { } );
 
-    my $ssa_path = File::Spec->catdir(
-	$ssa_dir,
-	$ssa_record->id . '.xml',
-    );
-    $ssa_record->path( $ssa_path );
+    $ssa_record->path( $ssa_record->id . '.xml' );
 
     # Now start preparing the new SSA object.
     my %ssa_creation_args = TAPER::Logic::SSA->fields_from_form( $form );

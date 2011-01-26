@@ -7,7 +7,7 @@ use Moose;
 use Moose::Util::TypeConstraints;
 use Carp qw( croak );
 use Scalar::Util;
-use List::MoreUtils qw( pairwise );
+use List::MoreUtils qw( pairwise each_array );
 use TAPER::Logic::Extent;
 use TAPER::Logic::DateSpan;
 use XML::LibXML;
@@ -37,7 +37,7 @@ sub new_from_record {
     my $class = shift;
     my ( $rsa_record ) = @_;
 
-    my $rsa_doc = $parser->parse_file( $rsa_record->path );
+    my $rsa_doc = $parser->parse_file( $rsa_record->absolute_path );
     
     my %rsa_creation_args = $class->fields_from_xml( $rsa_doc );
 
@@ -175,7 +175,7 @@ sub update {
     my $rsa_id = $rsa_record->id;
     $root->setAttribute( id => "$ID_PREFIX-$rsa_id" );
 
-    my $rsa_path = $rsa_record->path;
+    my $rsa_path = $rsa_record->absolute_path;
     
     # Open a filehandle, and write the RSA file.
     open my $rsa_handle, '>', $rsa_path
@@ -249,10 +249,15 @@ sub fields_from_form {
 
     # Extents...
     if ( my @extent_units = $form->param_list( 'extent_units' ) ) {
-	my @extent_values = $form->param_list ( 'extent_value' );
-	my @extents = pairwise {
-	    TAPER::Logic::Extent->new( units => $a, value => $b )
-	} @extent_units, @extent_values;
+	my @extent_values = $form->param_list( 'extent_value' );
+        my @extent_other = $form->param_list( 'extent_other_units' );
+        my $ea = each_array( @extent_units, @extent_values, @extent_other );
+        my @extents;
+        while ( my ($units, $value, $other) = $ea->() ) {
+            if ( $units eq 'other' && $other ne '' ) { $units = $other; }
+            push @extents, TAPER::Logic::Extent->new( units => $units,
+                                                      value => $value );
+	} 
 	$fields{extent} = \@extents;
     }
 
@@ -334,7 +339,7 @@ sub creator {
 sub inventory_documents {
     my $self = shift;
 
-    my $dir = dirname( $self->db_record->path ) . '/inventory/';
+    my $dir = dirname( $self->db_record->absolute_path ) . '/inventory/';
     opendir( my $dh, $dir );
     my @docs = grep { !( /^\.$/ || /^\.\.$/ ) } readdir( $dh );
     closedir( $dh );
@@ -358,7 +363,7 @@ sub inventory_zip {
 sub delete {
     my $self = shift;
 
-    remove_tree( dirname( $self->db_record->path ) );
+    remove_tree( dirname( $self->db_record->absolute_path ) );
     $self->db_record->delete;
 }
 
@@ -438,8 +443,8 @@ Returns the object's associated SSA, as a TAPER::Logic::SSA object.
 
 =item inventory_documents
 
-B<Read-only>.  Returns a list of paths for the inventory document
-files for this RSA.
+B<Read-only>.  Returns a list of absolute filesystem paths for the
+inventory document files for this RSA.
 
 =item inventory_zip
 

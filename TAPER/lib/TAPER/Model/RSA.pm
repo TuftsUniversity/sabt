@@ -64,7 +64,7 @@ sub zip {
 
     my $zip = Archive::Zip->new;
     for my $rsa ( @rsas ) {
-	my $path = $c->model( 'TAPERDB::Rsa' )->find( $rsa )->path;
+	my $path = $c->model( 'TAPERDB::Rsa' )->find( $rsa )->absolute_path;
 	$zip->addFile( $path, basename( $path ) );
     }
 
@@ -128,8 +128,9 @@ sub create_from_form {
         'inventory',
     );
     
+    # The path stored in the database is relative to $staging_dir.
     my $rsa_file_path = File::Spec->catfile(
-        $rsa_path,
+	$rsa_id,
         "$rsa_id.xml",
     );
 

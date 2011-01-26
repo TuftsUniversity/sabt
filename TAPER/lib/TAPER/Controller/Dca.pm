@@ -25,8 +25,7 @@ sub dca : Chained('/') CaptureArgs(0) {
 	}
 
     } else {
-	# TO DO: should the login page bring the user back here afterward?
-	$c->res->redirect( $c->uri_for ( '/auth/login' ) );
+	$c->res->redirect( $c->uri_for ( '/auth/login', { page => '/dca' } ) );
 	$c->detach;
     }
 

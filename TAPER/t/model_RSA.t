@@ -25,8 +25,9 @@ $form->load_config_file( "$FindBin::Bin/../root/forms/create_rsa/rsa.yml" );
 $form->process( {
     sipCreationAndTransfer      => [ 'label_box', 'create_inventory' ],
     generalRecordsDescription   => 'Spinal Tap drummers',
-    extent_value                => 100,
-    extent_units                => 'file',
+    extent_value                => [ 100, 33 ],
+    extent_units                => [ 'file', 'other' ],
+    extent_other_units          => [ '', 'tape' ],
     formatType                  => [ 'photographic_prints', 'digital_media' ],
     dateSpan_start              => 2000,
     dateSpan_end                => 2525,
@@ -45,6 +46,14 @@ is_deeply( $rsa->sipCreationAndTransfer, [ 'label_box', 'create_inventory' ],
     'Checked sipCreationAndTransfer.' );
 is( $rsa->generalRecordsDescription, 'Spinal Tap drummers',
     'Checked generalRecordsDescription.' );
+is( $rsa->extent->[0]->value, 100,
+    'Checked first extent value.' );
+is( $rsa->extent->[0]->units, 'file',
+    'Checked first extent units.' );
+is( $rsa->extent->[1]->value, 33,
+    'Checked second extent value.' );
+is( $rsa->extent->[1]->units, 'tape',
+    'Checked second extent units.' );
 is_deeply( $rsa->formatType, [ 'photographic_prints', 'digital_media' ],
     'Checked formatType.' );
 is_deeply( $rsa->arrangementAndNamingScheme, [ 'chronological' ],

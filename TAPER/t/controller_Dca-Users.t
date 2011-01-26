@@ -72,3 +72,7 @@ ok( !$mech->current_form->value( 'is_dca' ),
     'Check edited is_dca' );
 cmp_ok( [ $mech->current_form->param( 'office_active' ) ], '~~', [ 2, 1 ],
     'Check office 1 is active, 6 still inactive' );
+
+$mech->form_id( 'deleteForm' );
+$mech->click_ok( 'delete', 'Hit delete button' );
+$mech->content_lacks( 'Robertson', 'User deleted' );

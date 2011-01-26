@@ -1,24 +1,24 @@
-[% page_title = 'Edit SSA' %]
+[% page_title = 'Edit Transfer Template' %]
 
-<h2>Edit this SSA</h2>
+<h2>Edit Transfer Template</h2>
 
 [% IF form.submitted_and_valid %]
 <div class="success_box">
 <p>
-SSA successfully updated.
+Transfer Template successfully updated.
 </p>
 </div>
 [% ELSIF form.submitted %]
 <div class="alert_box">
 <p>
-SSA not updated.  Please correct the fields highlighted below.
+Transfer Template not updated.  Please correct the fields highlighted below.
 </p>
 </div>
 [% END %]
 
-<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to SSA list</a></p>
+<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to Transfer Template list</a></p>
 
-<p>Use the form below to modify this SSA.</p>
+<p>Use the form below to modify this Transfer Template.</p>
 
 [% form %]
 

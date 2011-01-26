@@ -1,21 +1,20 @@
-[% page_title = 'Create an SSA' %]
+[% page_title = 'Create a Transfer Template' %]
 
-<h2>Create an SSA</h2>
+<h2>Create a Transfer Template</h2>
 
 [% IF form.submitted %]
 <div class="alert_box">
 <p>
-SSA not created.  Please correct the fields highlighted below.
+Transfer Template not created.  Please correct the fields highlighted below.
 </p>
 </div>
 [% END %]
 
-<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to SSA list</a></p>
+<p><a href="[% Catalyst.uri_for( '/dca/ssas/list' ) %]">Return to Template list</a></p>
 
-<p>Use the form below to create a brand-new Standing Submission
-Agreement. Upon creation, it will immediately become available to
-Submission Agreement Builder users associated with the new SSA's
-office.</p>
+<p>Use the form below to create a new Transfer Template.  Upon
+creation, it will immediately become available to the Transfer
+Agreement Form users associated with the template's office.</p>
 
 [% form %]
 

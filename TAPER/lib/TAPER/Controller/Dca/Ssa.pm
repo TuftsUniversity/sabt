@@ -32,7 +32,8 @@ sub list : Chained('ssas') Args(0) {
     my $self = shift;
     my ( $c ) = @_;
     
-    $c->stash->{offices} = [ $c->model( 'TAPERDB::Office' )->all ];
+    my $model = $c->model( 'TAPERDB::Office' );
+    $c->stash->{offices} = [ $model->search( undef, { order_by => 'name' } ) ];
 
     $c->stash->{template} = 'dca/ssa/list.tt';
 }
@@ -47,7 +48,7 @@ sub edit : Chained('ssa') FormConfig('dca/ssa.yml') {
 
     # Little cheat: Change the name of the submit button.
     my $submit_button = $form->get_field( { name => 'ssa_submit' } );
-    $submit_button->value( 'Update this SSA' );
+    $submit_button->value( 'Update this Transfer Template' );
 
     $c->stash->{template} = 'dca/ssa/edit.tt';
 }
@@ -91,6 +92,14 @@ sub edit_FORM_NOT_SUBMITTED {
 sub create : Chained('ssas') FormConfig('dca/ssa.yml') {
     my $self = shift;
     my ( $c ) = @_;
+
+    my $form = $c->stash->{form};
+
+    $form->default_values({
+            warrantToCollect => 'Tufts University Records Policy',
+            retentionPeriod => 'Permanent',
+            archivalDescriptionStandard => 'DACS',
+        });
 
     $c->forward( 'populate_office_menu' );
 
@@ -226,9 +235,10 @@ Private helper action for validating a submitted SSA form.
 =head1 AUTHOR
 
 Jason McIntosh, Appleseed Software Consulting <jmac@appleseed-sc.com>
+Doug Orleans, Appleseed Software Consulting <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by Tufts University.
+Copyright (c) 2009-2010 by Tufts University.
 
 =cut

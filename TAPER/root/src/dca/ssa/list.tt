@@ -1,27 +1,27 @@
-[% page_title = 'Manage SSAs' %]
+[% page_title = 'Make and Manage Templates' %]
 
 [% USE scalar %]
 
-<h2>Manage SSAs</h2>
+<h2>Make and Manage Templates</h2>
 
 [% IF creation_was_successful %]
 <div class="success_box">
 <p>
-New SSA created successfully.
+New Transfer Template created successfully.
 </p>
 </div>
 [% END %]
 
-<p>From this screen, you can either choose an existing SSA to edit, or create a new SSA.</p>
+<p>From this screen, you can either create a new transfer template or edit an existing one.</p>
 
-<h3>Create an SSA</h3>
+<h3>Create a Transfer Template</h3>
 
-<p><a href="[% Catalyst.uri_for ('/dca/ssas/create') %]">Click here to create a new Standing Submission Agreement.</a></p>
+<p><a href="[% Catalyst.uri_for ('/dca/ssas/create') %]">Click here to create a new Transfer Template.</a></p>
 
-<h3>Edit a SSA</h3>
+<h3>Edit a Transfer Template</h3>
 
 [% IF Catalyst.model( 'TAPERDB::Ssa' ).all %]
-<p>Click the title of any SSA below to edit it.</p>
+<p>Click the title of any Transfer Template below to edit it.</p>
     [% FOREACH office = offices %]
         [% ssas = Catalyst.model( 'SSA' ).all_for_office( office.id ) %]
         [% IF ssas %]
@@ -38,5 +38,5 @@ New SSA created successfully.
          [% END %]
      [% END %]
 [% ELSE %]
-<p>Actually, there don't seem to be any SSAs in the system right now...</p>
+<p>Actually, there don't seem to be any Transfer Templates in the system right now...</p>
 [% END %]

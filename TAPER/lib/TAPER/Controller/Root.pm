@@ -13,32 +13,7 @@ use List::MoreUtils qw( each_array all any );
 #
 __PACKAGE__->config->{namespace} = '';
 
-=head1 NAME
-
-TAPER::Controller::Root - Root Controller for TAPER
-
-=head1 DESCRIPTION
-
-This is TAPER's root controller. It's basically Catalyst's default
-root controller, pretty much unchanged except for the documentation
-you are now reading. More interesting controller activity occurs in
-the various TAPER::Controller::* modules.
-
-
-=head1 METHODS
-
-=cut
-
-=head2 index
-
-=cut
-
 sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
-
-    unless ( defined $c->taper_user ) {
-	$c->res->redirect( $c->uri_for ('/auth/login') );
-    }
 }
 
 sub default :Path {
@@ -46,6 +21,17 @@ sub default :Path {
     $c->response->body( 'Page not found' );
     $c->response->status(404);
     
+}
+
+sub end : ActionClass('RenderView') {}
+
+sub preservation_rules :Local :Args(0) {
+    my $self = shift;
+    my ( $c ) = @_;
+
+    $c->stash->{rules} =
+        [ $c->model( 'TAPERDB::PreservationRule' )->search( undef, {
+            order_by => 'number' } ) ];
 }
 
 sub validate_nonempty_repeatable : Private {
@@ -198,6 +184,24 @@ sub _mk_error {
     return $error;
 }
 
+=head1 NAME
+
+TAPER::Controller::Root - Root Controller for TAPER
+
+=head1 DESCRIPTION
+
+This is TAPER's root controller. It's basically Catalyst's default
+root controller, pretty much unchanged except for the documentation
+you are now reading. More interesting controller activity occurs in
+the various TAPER::Controller::* modules.
+
+
+=head1 METHODS
+
+=head2 index
+
+Show the home page.
+
 =head2 default
 
 The catch-all default action. Returns a 404 status response.
@@ -205,6 +209,10 @@ The catch-all default action. Returns a 404 status response.
 =head2 end
 
 Attempt to render a view, if needed.
+
+=head2 preservation_rules
+
+Show the table of preservation rules.
 
 =head2 validate_nonempty_repeatable
 =head2 validate_producers
@@ -214,17 +222,14 @@ Attempt to render a view, if needed.
 Private helper actions for validating repeatable fields on a submitted
 FormFu form.
 
-=cut 
-
-sub end : ActionClass('RenderView') {}
-
 =head1 AUTHOR
 
 Jason McIntosh, Appleseed Software Consulting <jmac@appleseed-sc.com>
+Doug Orleans, Appleseed Software Consulting <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by Tufts University.
+Copyright (c) 2009-2010 by Tufts University.
 
 =cut
 

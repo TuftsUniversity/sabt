@@ -77,7 +77,8 @@ $mech->content_like( qr/activityLogNumber.*69,105/,
 		     'Checked activityLogNumber.' );
 
 $mech->back;
-$mech->follow_link_ok( { text => 'Delete' }, 'Followed delete link.' );
+$mech->submit_form_ok( { with_fields => { rsa => 1 }, button => 'delete', },
+                       'Submitted delete form.' );
 $mech->base_like( qr{/dca/rsas/archive}, 'Ended up back on archive page.' );
 $mech->content_like( qr/eleted/, 'Saw deleted message.' );
 $mech->content_lacks( 'Meeting Minutes', 'No longer on archive page.' );

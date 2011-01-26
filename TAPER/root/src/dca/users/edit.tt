@@ -18,8 +18,23 @@ User not updated.  Please correct the fields highlighted below.
 
 <p><a href="[% Catalyst.uri_for( '/dca/users/list' ) %]">Return to user list</a></p>
 
-<p>Use the form below to modify this user.</p>
+<p>Use the form below to modify this user.  Use the button at the bottom to delete this user.</p>
 
 [% form %]
 
 [% INCLUDE user_office_js.tt %]
+
+<hr>
+<p>
+<form method="post" id="deleteForm"
+      action="[% Catalyst.uri_for( '/dca/users/user/' _ user.id _ '/delete' ) %]">
+<input type="submit" onclick="return confirm_delete()"
+       name="delete" value="Delete user">
+</form>
+</p>
+
+<script type="text/javascript">
+function confirm_delete() {
+    return confirm( 'Warning: You are about to permanently delete this user.' );
+}
+</script>

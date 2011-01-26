@@ -1,6 +1,6 @@
-[% page_title = 'SABT Login' %]
+[% page_title = 'Transfer Agreement Form Login' %]
 
-<h1>Submission Agreement Builder Tool</h1>
+<h1>Transfer Agreement Form</h1>
 
 <p>Please log in using your Tufts account.</p>
 

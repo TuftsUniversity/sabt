@@ -1,23 +1,30 @@
-[% page_title = 'Manage Offices' %]
+[% page_title = 'Manage Offices and Units' %]
 
-<h2>Manage Offices</h2>
+<h2>Manage Offices and Units</h2>
 
 [% IF form.submitted_and_valid %]
 <div class="success_box">
-<p>Office added.</p>
+<p>[% office.name %] added.</p>
+</div>
+[% ELSIF office_deleted %]
+<div class="success_box">
+<p>[% office.name %] deleted.</p>
+</div>
+[% ELSIF office_not_deleted %]
+<div class="alert_box">
+<p>[% office.name %] NOT deleted.</p>
 </div>
 [% END %]
 
-<p>From this screen, you can either choose an existing office to edit,
-or add a new office.</p>
+<p>From this screen, you can either add a new office or unit or edit an existing one.</p>
 
-<h3>Add a new office</h3>
+<h3>Add a new office or unit</h3>
 
 [% form %]
 
-<h3>Edit an office</h3>
+<h3>Edit an office or unit</h3>
 
-<p>Click the name of an office below to edit it.
+<p>Click the name of an office or unit below to edit or delete it.
 <ul>
 [% model = Catalyst.model( 'TAPERDB::Office' ) %]
 [% FOR office = model.search(undef, { order_by => 'name' }) %]

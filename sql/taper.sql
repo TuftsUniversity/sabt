@@ -1,8 +1,8 @@
--- MySQL dump 10.11
+-- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: taper
 -- ------------------------------------------------------
--- Server version	5.0.83-0ubuntu3
+-- Server version	5.1.49-1ubuntu8.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,10 +23,26 @@ DROP TABLE IF EXISTS `office`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `office` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` char(64) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char(64) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `preservation_rule`
+--
+
+DROP TABLE IF EXISTS `preservation_rule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `preservation_rule` (
+  `number` tinyint(4) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `action` text NOT NULL,
+  `related_p_and_p` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`number`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,9 +53,9 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` char(16) default NULL,
-  PRIMARY KEY  (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char(16) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,14 +67,14 @@ DROP TABLE IF EXISTS `rsa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `rsa` (
-  `id` int(11) NOT NULL auto_increment,
-  `path` char(64) default NULL,
-  `ssa` int(11) default NULL,
-  `is_final` tinyint(4) default NULL,
-  PRIMARY KEY  (`id`),
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` char(64) DEFAULT NULL,
+  `ssa` int(11) DEFAULT NULL,
+  `is_final` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `ssa` (`ssa`),
   CONSTRAINT `rsa_ibfk_1` FOREIGN KEY (`ssa`) REFERENCES `ssa` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,13 +85,13 @@ DROP TABLE IF EXISTS `ssa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ssa` (
-  `id` int(11) NOT NULL auto_increment,
-  `path` char(64) default NULL,
-  `office` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` char(64) DEFAULT NULL,
+  `office` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `office` (`office`),
   CONSTRAINT `ssa_ibfk_1` FOREIGN KEY (`office`) REFERENCES `office` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,13 +102,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL auto_increment,
-  `username` char(16) default NULL,
-  `first_name` char(64) default NULL,
-  `last_name` char(64) default NULL,
-  `is_dca` tinyint(4) default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` char(16) DEFAULT NULL,
+  `first_name` char(64) DEFAULT NULL,
+  `last_name` char(64) DEFAULT NULL,
+  `is_dca` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,13 +119,13 @@ DROP TABLE IF EXISTS `user_office`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_office` (
-  `user` int(11) NOT NULL default '0',
-  `office` int(11) NOT NULL default '0',
-  `active` tinyint(1) NOT NULL default '1',
-  PRIMARY KEY  (`user`,`office`),
+  `user` int(11) NOT NULL DEFAULT '0',
+  `office` int(11) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user`,`office`),
   KEY `office` (`office`),
-  CONSTRAINT `user_office_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
-  CONSTRAINT `user_office_ibfk_2` FOREIGN KEY (`office`) REFERENCES `office` (`id`)
+  CONSTRAINT `user_office_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `user_office_ibfk_2` FOREIGN KEY (`office`) REFERENCES `office` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -121,8 +137,8 @@ DROP TABLE IF EXISTS `user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_role` (
-  `user` int(11) default NULL,
-  `role` int(11) default NULL,
+  `user` int(11) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
   KEY `user` (`user`),
   KEY `role` (`role`),
   CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
@@ -139,4 +155,4 @@ CREATE TABLE `user_role` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-03-10 23:07:47
+-- Dump completed on 2011-01-09 21:45:42

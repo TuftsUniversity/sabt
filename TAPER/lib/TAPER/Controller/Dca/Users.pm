@@ -54,6 +54,7 @@ sub add_FORM_VALID {
     $c->forward( '_add_offices' );
 
     $c->flash->{user_added} = 1;
+    $c->flash->{user} = $c->stash->{user};
     $c->res->redirect( $c->uri_for( '/dca/users/list' ) );
     $c->detach;
 }
@@ -102,6 +103,7 @@ sub edit_FORM_VALID {
     for my $f ( @field_names ) {
 	$user->$f( $form->param_value( $f ) );
     }
+    $user->update;
 
     $user->user_offices->delete;
     $c->forward( '_add_offices' );
@@ -110,6 +112,18 @@ sub edit_FORM_VALID {
     $c->forward( '_populate_user_form' );
 }
 
+sub delete : Chained('user') Args(0) {
+    my $self = shift;
+    my ( $c ) = @_;
+
+    my $user = $c->stash->{user};
+    $user->delete;
+
+    $c->flash->{user_deleted} = 1;
+    $c->flash->{user} = $c->stash->{user};
+    $c->res->redirect( $c->uri_for( '/dca/users/list' ) );
+    $c->detach;
+}
 
 sub _populate_office_menu : Private {
     my $self = shift;
@@ -267,10 +281,15 @@ Path: dca/users/user/$user_id/edit
 
 Displays and handles a form that allows DCA staff to edit a user.
 
+=item delete
+
+Path: dca/users/user/$user_id/delete
+
+Deletes a user.
+
 =back
 
 =head2 Private Actions
-
 
 These are private helper actions; you shouldn't need to use them directly.
 

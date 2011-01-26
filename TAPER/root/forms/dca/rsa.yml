@@ -2,18 +2,25 @@
 
 method: post
 
+default_args:
+    elements:
+        Date:
+            field_order: [ 'year', 'month', 'day' ]
+            day:
+              prefix: '- Day -'
+            month:
+              prefix: '- Month -'
+            year:
+              prefix: '- Year -'
+              less: 10
+              plus: 10
+            auto_inflate: 1
+
 elements:
 
       - type: RepeatableFieldset
         name: sipCreationAndTransfer
         legend: SIP creation and transfer
-
-      - type: Textarea
-        label: General records description
-        name: generalRecordsDescription
-        rows: 5
-        constraints:
-          - type: Required
 
       - type: RepeatableFieldset
         name: extent
@@ -91,15 +98,6 @@ elements:
       - type: RequiredDate
         label: Archive endorsement
         name: archiveEndorsement
-        day:
-          prefix: '- Day -'
-        month:
-          prefix: '- Month -'
-        year:
-          prefix: '- Year -'
-          less: 10
-          plus: 10
-        auto_inflate: 1
 
       - type: Text
         label: Record type record
@@ -127,15 +125,6 @@ elements:
       - type: RequiredDate
         name: transferDate
         label: Transfer date
-        day:
-          prefix: '- Day -'
-        month:
-          prefix: '- Month -'
-        year:
-          prefix: '- Year -'
-          less: 10
-          plus: 10
-        auto_inflate: 1
 
       - type: Fieldset
         legend: Optional fields
@@ -144,28 +133,10 @@ elements:
           - type: AllOrNoneDate
             name: activation
             label: Activation
-            day:
-              prefix: '- Day -'
-            month:
-              prefix: '- Month -'
-            year:
-              prefix: '- Year -'
-              less: 10
-              plus: 10
-            auto_inflate: 1
 
           - type: AllOrNoneDate
             name: expiration
             label: Expiration
-            day:
-              prefix: '- Day -'
-            month:
-              prefix: '- Month -'
-            year:
-              prefix: '- Year -'
-              less: 10
-              plus: 10
-            auto_inflate: 1
 
           - type: RepeatableFieldset
             name: retentionAlertDate
@@ -173,15 +144,11 @@ elements:
             elements:
               - type: RepeatedAllOrNoneDate
                 name: retentionAlertDate
-                day:
-                  prefix: '- Day -'
-                month:
-                  prefix: '- Month -'
-                year:
-                  prefix: '- Year -'
-                  less: 10
-                  plus: 10
-                auto_inflate: 1
+
+          - type: Textarea
+            label: Transfer notes
+            name: generalRecordsDescription
+            rows: 5
 
           - type: RepeatableFieldset
             name: recordkeepingSystem
@@ -213,7 +180,10 @@ elements:
 
           - type: RepeatableFieldset
             name: sipToAip
-            legend: SIP to AIP
+            legend: Preservation Rules
+            elements:
+              - type: RepeatableSelect
+                name: sipToAip
 
           - type: RepeatableFieldset
             name: archivalDescriptionStandard
@@ -233,4 +203,4 @@ elements:
           
       - type: Submit
         name: rsa_submit
-        value: Update this RSA
+        value: Update this Transfer Agreement

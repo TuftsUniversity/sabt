@@ -19,7 +19,8 @@ sub create_rsa : PathPart('create_rsa') Chained('/') CaptureArgs(0) {
     my ( $c ) = @_;
 
     unless ( defined $c->taper_user ) {
-	$c->res->redirect( $c->uri_for( '/auth/login' ) );
+	$c->res->redirect( $c->uri_for( '/auth/login',
+                                        { page => '/create_rsa' } ) );
 	$c->detach;
     }
 }

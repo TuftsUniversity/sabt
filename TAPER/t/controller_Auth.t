@@ -53,3 +53,5 @@ $mech->submit_form_ok(
     'Submitted login form',
 );
 $mech->content_like(qr/Unregistered/, 'Unregistered login seems to have worked');
+$mech->content_contains( 'dca@example.com',
+                         'Unregistered page uses address from config' );

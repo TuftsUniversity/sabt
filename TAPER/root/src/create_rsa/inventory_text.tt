@@ -1,9 +1,9 @@
-[% page_title = 'Add RSA inventory text' %]
+[% page_title = 'Add record transfer inventory text' %]
 
 <h2>Adding a text inventory</h2>
 
 <p>
-Please type in some text that describes this RSA's inventory.
+Please type in some text that describes the records you are transferring.
 </p>
 
 <p>

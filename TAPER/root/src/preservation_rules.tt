@@ -1,0 +1,22 @@
+[% page_title = 'Preservation Rules' %]
+
+<h1>Preservation Rules</h1>
+
+<table border="2" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+  <td>Rule Number</td>
+  <td>Description</td>
+  <td>Action</td>
+  <td>Related P&amp;P</td>
+</tr>
+[% FOREACH rule IN rules %]
+<tr>
+  <td align="center">[% rule.number %]</td>
+  <td>[% rule.description %]</td>
+  <td>[% rule.action %]</td>
+  <td>[% rule.related_p_and_p || '&nbsp;' %]</td>
+</tr>
+[% END %]
+</tbody>
+</table>

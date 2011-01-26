@@ -2,35 +2,31 @@
     base a new RSA on.
 %]
 
-[% page_title = 'Create an RSA' %]
+[% page_title = 'Create a Transfer Agreement' %]
 
 [% IF rsa_complete %]
-<div class="success_box">
-<p>You have completed this Regular Submission Agreement draft! Thank you. DCA staff has been notified of the submission.</p>
 
 [% url = rsa.dropboxUrl %]
 [% IF url %]
-<p>
-The standing submission agreement that this new submission is
-based on, [% rsa.recordType %], uses a dropbox for electronic records.
-If you have electronic files to deposit permanently to the archives at
-this time, you may deposit them by visiting this link (link will open
-in a separate window):
+<h2>Submitting electronic files?</h2>
+
+<p>Deposit them by visiting this link (link will open in a separate window):
 <a href="[% url %]" target="_blank">[% url %]</a>
 </p>
 [% END %]
-
-<p>If you wish to create a new RSA, you may begin the process anew below by once again selecting a starting SSA.</p>
-</div>
 [% END %]
 
 [% IF ssa_not_found %]
 <p class="error">ERROR: There is no record of an SSA with the database ID '[% ssa_id %]'.</p>
 [% END %]
 
-<h2>Choose an SSA</h2>
+[% IF rsa_complete %]
+<h2>Want to complete another Transfer Agreement Form?</h2>
+[% ELSE %]
+<h2>Choose a Transfer Agreement Form</h2>
+[% END %]
 
-<p>Please choose a Standing Submission Agreement from this list.</p>
+<p>Please choose a Transfer Agreement Form from the list.</p>
 
 <form method="post">
 <p>
@@ -45,7 +41,7 @@ in a separate window):
   [% FOREACH ssa_db_record = office.ssas %]
     [% ssa = Catalyst.model( 'SSA' ).find( ssa_db_record.id ) %]
     <option value="[% ssa_db_record.id %]">
-      [% office.name %] :: [% ssa.recordType %]
+      [% office.name %] : [% ssa.recordType %]
     </option>
   [% END %]
 [% END %]
@@ -53,8 +49,20 @@ in a separate window):
 </p>
 
 <p>
-<input type="submit" name="ssa_submit" value="Base a new submission agreement on this SSA" />
+<input type="submit" name="ssa_submit" value="Fill out a Transfer Agreement Form" />
 </p>
 
+[% IF rsa_complete %]
+<h2>All done?</h2>
+<p>Click here to logout.
+<form method="post" action="[% Catalyst.uri_for('/auth/logout') %]">
+<input type="submit" value="Log out of Form" />
+</form>
+</p>
+
+<div class="success_box">
+<p>Thank you for your successful completion of a Transfer Agreement Form. The DCA staff has been notified of the submission.</p>
+</div>
+[% END %]
 
 </form>

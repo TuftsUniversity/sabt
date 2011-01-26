@@ -35,6 +35,9 @@ our $VERSION = '0.01';
 # Turn on Session's flash-to-stash feature.
 __PACKAGE__->config( session => { flash_to_stash => 1 } );
 
+# Provide an empty config for the Cache plugin, because otherwise it complains.
+__PACKAGE__->config( 'Plugin::Cache' => { } );
+
 # Check for an env var pointing to a different site-config file.
 if ( defined $ENV{TAPER_SITE_CONFIG} ) {
     __PACKAGE__->config( 'Plugin::ConfigLoader' => {
@@ -201,11 +204,12 @@ An interface to Standard Submission Agreement XML documents and related metdata.
 
 =head1 AUTHOR
 
-Jason McIntosh, Appleseed Software Consulting <jmac@applseed-sc.com>
+Jason McIntosh, Appleseed Software Consulting <jmac@appleseed-sc.com>
+Doug Orleans, Appleseed Software Consulting <dougo@appleseed-sc.com>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 Tufts University.
+Copyright (c) 2009-2010 Tufts University.
 
 =cut
 

@@ -30,7 +30,7 @@ sub login_FORM_SUBMITTED {
 	if ( $taper_user ) {
 	    # Yep, they're good to go.
 	    # Now kick the user to the front page.
-	    $c->res->redirect($c->uri_for('/'));
+	    $c->res->redirect($c->uri_for( $c->req->params->{page} || '/' ));
 	}
 	else {
 	    # This user is Tufts-valid, but unknown to this application.
@@ -58,7 +58,7 @@ sub logout : Local {
         $c->logout;
     }
 
-    $c->res->redirect($c->uri_for('/'));
+    $c->res->redirect($c->uri_for('/auth/login'));
 }
 
 1;

@@ -81,18 +81,18 @@
           <div id="leftnav">
             <!-- left navigation begins -->
             [% INCLUDE login_div.tt %]
-            <ul><li><span id="on">TAPER links</span></li>
-              <li><a href="[% Catalyst.uri_for( '/' ) %]">TAPER tools homepage</a></li>
-              <li><a href="[% Catalyst.uri_for( '/create_rsa' ) %]">Submission Agreement Builder</a></li>
+            <ul><li><span id="on">Submission Tools</span></li>
+              <li><a href="[% Catalyst.uri_for( '/' ) %]">Homepage</a></li>
+              <li><a href="[% Catalyst.uri_for( '/create_rsa' ) %]">Transfer Agreement Form</a></li>
               [% IF Catalyst.user && Catalyst.taper_user.is_dca %]
-              <li><a href="[% Catalyst.uri_for( '/dca/' ) %]">DCA TAPER tools</a></li>
+              <li><a href="[% Catalyst.uri_for( '/dca/' ) %]">DCA administrative tools</a></li>
               [% END %]
             </ul>
           </div>
         </td> <!-- leftnavcell -->
         <td valign="top" class="contentcellwide" colspan="2">
           <!-- main image goes here -->
-          <img src="http://dca.tufts.edu/images/dca__17.jpg" width="679" height="160" alt="Digital Collections and Archives" border="0" />
+          <img src="http://dca.tufts.edu//images/level2/main_header_679x160_7.jpg" width="679" height="160" alt="Digital Collections and Archives" border="0" />
           <!-- begin main content area -->
           <div id="contentarea">
             [% content %]
