@@ -21,9 +21,7 @@ Deleted [% deleted_rsas %] Transfer Agreement Form[% IF deleted_rsas != 1 %]s[% 
 <th>Endorsement date</th>
 <th>Creator</th>
 <th>Record type</th>
-[% IF archive %]
 <th>Inventory documents</th>
-[% END %]
 </tr>
 [% FOREACH rsa = rsas %]
 <tr>
@@ -32,7 +30,6 @@ Deleted [% deleted_rsas %] Transfer Agreement Form[% IF deleted_rsas != 1 %]s[% 
 <td>[% rsa.producerEndorsement.ymd %]</td>
 <td>[% rsa.creator %]</td>
 <td>[% rsa.recordType %]</td>
-[% IF archive %]
 <td>
 [% IF deleted_inventory_rsa == rsa.id %]
 <div class="success_box">Deleted [% deleted_inventory %]
@@ -46,7 +43,6 @@ document[% IF deleted_inventory != 1 %]s[% END %]
 <a href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/inventory' ) %]">Download</a>&nbsp;&nbsp;<a onclick="return confirm_delete_inventory([% docs %])" href="[% Catalyst.uri_for( '/dca/rsas/rsa/' _ rsa.id _ '/delete_inventory' ) %]">Delete</a>
 [% END %]
 </td>
-[% END %]
 </tr>
 [% END %]
 [% END %]

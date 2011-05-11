@@ -121,6 +121,8 @@ elements:
           - type: Regex
             common:
               - URI
+              - HTTP
+              - { '-scheme': 'https?' }
 
       - type: RequiredDate
         name: transferDate

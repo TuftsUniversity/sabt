@@ -52,6 +52,8 @@
 <input type="submit" name="ssa_submit" value="Fill out a Transfer Agreement Form" />
 </p>
 
+</form>
+
 [% IF rsa_complete %]
 <h2>All done?</h2>
 <p>Click here to logout.
@@ -64,5 +66,3 @@
 <p>Thank you for your successful completion of a Transfer Agreement Form. The DCA staff has been notified of the submission.</p>
 </div>
 [% END %]
-
-</form>

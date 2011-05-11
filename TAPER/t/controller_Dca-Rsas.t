@@ -48,6 +48,7 @@ $mech->submit_form_ok(
 	with_fields => {
 	    generalRecordsDescription => 'Photos of Spinal Tap drummers.',
 	    activityLogNumber => '69,105',
+            dropboxUrl => 'https://example.com',
 	    transferDate_day => '10',
 	    transferDate_month => '11',
 	    transferDate_year => '2009',
@@ -55,6 +56,7 @@ $mech->submit_form_ok(
 	},
     },
     'Submitted edit form.');
+$mech->content_lacks( 'not updated', 'Successfully updated.' );
 
 # Make sure it moved from the drafts page to the archive page.
 $mech->get( '/dca/rsas/drafts' );

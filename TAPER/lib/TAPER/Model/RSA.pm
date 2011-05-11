@@ -43,7 +43,8 @@ sub drafts {
 }
 
 sub archive {
-    return shift->_search( { is_final => 1 } );
+    return sort { $b->producerEndorsement <=> $a->producerEndorsement }
+           shift->_search( { is_final => 1 } );
 }
 
 sub _search {

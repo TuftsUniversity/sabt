@@ -1,1 +1,17 @@
-Run script/taper_server.pl to test the application.
+Edit taper.conf, or copy to taper_local.conf and edit that, to change
+the following for your local configuration:
+
+* Application name and archive ID
+* Database user and password
+* Path to session data
+* Session expiration time
+* LDAP server hostname (or other authentication method)
+* Email address
+* Email server hostname
+* XML staging directories
+
+Run "script/taper_server.pl -r -d" to test the application
+(visit http://localhost:3000/ in a browser).
+
+There are also Perl unit test scripts in the t/ directory, which you
+can run with "prove -l lib t".
