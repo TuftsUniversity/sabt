@@ -5,7 +5,7 @@ the following for your local configuration:
 * Database user and password
 * Path to session data
 * Session expiration time
-* LDAP server hostname (or other authentication method)
+* LDAP server hostname and user_basedn (or other authentication method)
 * Email address
 * Email server hostname
 * XML staging directories
