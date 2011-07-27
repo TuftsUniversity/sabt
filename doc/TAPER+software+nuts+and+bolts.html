@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+            <title>TAPER software nuts and bolts - TAPER: Tufts Accessioning Program for Electronic Records - Confluence</title>
+    
+        
+</head><body>    
+            <h1>TAPER's software: nuts and bolts</h1>
+
+<h2>System Requirements</h2>
+
+<ul>
+	<li><b>A modern Unix-based OS.</b> The TAPER software has been shown to work on Solaris, Linux, and Mac OS X. In theory you could get it working on Windows, but this is untested. This documentation uses Unix-ese throughout.
+	<ul>
+		<li>TAPER assumes that you will be using the <b>Apache</b> web server and <b>FastCGI</b>.</li>
+	</ul>
+	</li>
+</ul>
+
+
+<ul>
+	<li><b>Perl, version 5.8.8 or later.</b>
+	<ul>
+		<li>TAPER uses <b>Catalyst</b>, a modern web framework that requires a reasonably recent version of the Perl programming language. Catalyst is sufficiently popular that you can find lots of help on the internet and in the book <em>The Definitive Guide to Catalyst</em>, which this documentation mentions over and over again for good reason.</li>
+	</ul>
+	</li>
+</ul>
+
+
+<ul>
+	<li><b>MySQL, version 5 or later.</b> TAPER's various web-based tools need database support to function properly, and MySQL is our database system of choice. You will need at least version 5, because that supports the InnoDB data storage engine.</li>
+</ul>
+
+
+<ul>
+	<li><b>The GNU C compiler (gcc).</b></li>
+</ul>
+
+
+<ul>
+	<li><b>The <tt>make</tt> utility.</b></li>
+</ul>
+
+
+<h3>Setting up TAPER</h3>
+
+<p>Getting a TAPER software installation up and running requires several steps. Fortunately, many have tests you can run along the way, to make sure you're on the right track.</p>
+
+<p>This documentation details the worst-case scenarios that might occur when installing open source software written for one particular environment on a generic system in a generic environment. Your process may differ from this. None of these steps is particularly unusual.</p>
+
+<h5>Getting the TAPER software</h5>
+
+<p>Firstly, you'll need a copy of the TAPER software itself from
+the Subervision (or Git) repository.</p>
+<p>Which branch do you want? That depends on the nature of the instance you'd like to set up.</p>
+
+<ul>
+	<li>If you're setting up a test server, you'll want only <tt>trunk</tt>. And you're likely t only want <tt>trunk/TAPER</tt>, which gives you only the TAPER software, without any supplementary materials (docs, XML schemas, etc)</li>
+	<li>If you're setting up a production site, you'll want only the <tt>production</tt> branch. And again, probably you'll need only <tt>production/TAPER</tt>.</li>
+	<li>If you're setting up a local development site, you'll want the whole thing - both branches.</li>
+</ul>
+
+<p>See the <a href="Software+map.html">Software map</a> for more information on what you'll find within these branches, in any case.</p>
+
+<h5>Setting up Perl</h5>
+
+<p>You need access to the Perl programming language, version 5.8.8 or later. To see what version of Perl your target machine is running, type this on the command line:</p>
+
+<p> <tt>perl -v</tt></p>
+
+<p>If the version number you see is lower than 5.8.8, then you'll need to install a newer perl yourself, somewhere else on the machine. See Appendix A of the Catalyst book (described in <em>A Note on Perl</em>, below) for a succinct guide for doing this.</p>
+
+<h5>Set up your environment</h5>
+
+<p>You should modify several of your own path-defining environment variables so that they include the various directories (beyond the system defaults) that TAPER-using libraries are going to go into. These variables include:</p>
+
+<ul>
+	<li>PATH</li>
+	<li>LD_LIBRARY_PATH</li>
+	<li>LIBRARY_PATH</li>
+	<li>PERL5LIB</li>
+</ul>
+
+
+<p>So, for example, if you're installing the TAPER software into <tt>/opt/taper</tt>, then you'll want to add <tt>/opt/taper/bin</tt> to <tt>PATH</tt>, <tt>/opt/taper/lib</tt> to both <tt>LD_LIBRARY_PATH</tt> and <tt>LIBRARY_PATH</tt>, and both <tt>/opt/taper/lib/perl5/5.8.8</tt> and <tt>/opt/taper/lib/perl5/site_perl/5.8.8</tt> to <tt>PERL5LIB</tt> (modified for whatever version of Perl you've installed locally).</p>
+
+<p>I recommend that you make these modifications permanent by adding them to your own <tt>.profile</tt> file on this machine (and using the <tt>source</tt> command on that file, after editing it, to have then kick in immediately).</p>
+
+<h5>Set up CPAN</h5>
+
+<p>On the command line, run:</p>
+
+<p><tt>cpan</tt></p>
+
+<p>This will launch the CPAN shell. (CPAN is the archive network from which all the third-party Perl-based software you'll need will come from.) Follow the ensuing dialog to set up basic configuration.</p>
+
+<p>After you're done with that, and while you're still in the CPAN shell, type the following commands. This will set up some additional configuaration.</p>
+
+<p><tt>o conf prerequisites_policy follow</tt><br/>
+This will prevent CPAN from timidly asking for permission before automatically installing any modules' prerequisite modules. You're going to be installing so many modules, which have so many recursive layers of prerequisites, that not enabling this option make you sad later on.</p>
+
+<p><tt>o conf makepl_arg PREFIX=/opt/taper</tt> <em>(or whatever your top-level TAPER software directory is)</em><br/>
+This tells CPAN to install all Perl modules into your TAPER install's own directories, rather than trying to jam them into /usr/ or some other system-level directory.</p>
+
+<p><tt>o conf commit</tt><br/>
+This saves your changes. And finally...</p>
+
+<p><tt>quit</tt></p>
+
+<h5>Create a MySQL database for TAPER</h5>
+
+<p>If MySQL isn't already on the target machine, here's where you change that. </p>
+
+<h5>Run TAPER's makefile.</h5>
+
+<p>This is the hardest step, where things may get a little hairy and time-consuming.</p>
+
+<p>While in the taper directory, run this command:</p>
+
+<p><tt>perl Makefile.PL</tt></p>
+
+<p>This runs a script which, among other things, determines whether you're missing any prerequisite pieces of third-party software. Probably this will end up being an awful lot of stuff, because this is the part where it discovers that you're missing not only the Catalyst framework but also a whole lot of extension modules for both Catalyst and Perl in general that our software needs to work. It will ask you if you'd like to install them all now. Say yes. Then type <tt>make</tt>.</p>
+
+<p>Presently, the make process will commence downloading and installing lots and lots of Perl modules. (It may pause at the outset to ask you for help configuring its connection to CPAN. This process should be self-explanatory, if it happens.) Things might get a little more complicated at this point, especially if it starts barking at you about missing C libraries. In that case, you'll need to determine which C libraries it wants, and install them. The various Perl modules' own documentation will guide you further in this case.</p>
+
+<p>Note that, if you do end up installing C libraries, you can feel free to install them into TAPER's own library directories. Usually this is done by passing an option like <tt>PREFIX=/opt/taper</tt> to their <tt>configure</tt> scripts. See each library's <tt>README</tt> or <tt>INSTALL</tt> file for specifics.</p>
+
+<p>If you find that you need finer control over any Perl module's compilation process, you can visit its downloaded source code directory by locating its directory under <tt>~/.cpan/build</tt>, and using the various <tt>README</tt> and <tt>INSTALL</tt> files there to help you.</p>
+
+<h5>Test it!</h5>
+
+<p>Having run that gantlet, you can now run TAPER's automated test suite like so:</p>
+
+<p><tt>prove -l lib t</tt></p>
+
+<p>If everything reports "OK", congratulations, you have a fully functional TAPER software setup! Now to actually get it to work for real...</p>
+
+<p>If, on the other hand, you get an error message - well, your next action depends on what that error is. If it's meaningless to you, consult a colleague who can read Perl error messages better than you, or the internet.</p>
+
+<h5>Set up the configuration file</h5>
+
+<p>Now you must modify the <a href="taper.conf.html">taper.conf</a> configuration file in a way that's appropriate to your current machine. See the <a href="taper.conf.html">taper.conf</a> page for a guide to this file.</p>
+
+<h5>Try the test server</h5>
+
+<p>Run this command:</p>
+
+<p>{{ perl scripts/taper_server.pl -r -d }}</p>
+
+<p>If you see a lot of output followed by a message that the application is now available on port 3000, excellent - you're nearly there! Break out of this process (Ctrl-C) and continue to the next step.</p>
+
+<p>If, on the other hand, you get an error message - well, your next action depends on what that error is. At this point, it's most likely to be a file permissions error of some kind, so do what you must, and then try running the server again.</p>
+
+<h5>Configure Apache until it works</h5>
+
+<p>Finally, it's time to get the thing off the ground. This is a pure matter of proper Apache configuration, and probably some amount of trial and error while running <tt>tail -f</tt> on Apache's error logs. </p>
+
+<p>You'll need to configure the machine's Apache web server so that it forwards requests for TAPER's web tools to the Catalyst FastCGI server. There are several ways you can do this, depending upon circumstances, and therefore it's rather outside the scope of this documentation, but you can find a lot of hints in <em>The Definitive Guide to Catalyst</em> (see below).</p>
+
+<p>Note that the webuser needs its environment set up similarly to how you set up your own environment, back in the <em>Set up your environment</em> step. Unfortunately, it's not enough to simply set environment variables using the <tt>SetEnv</tt> Apache configuration directive, because the FastCGI server is launched as separate processes, so Apache's own environment doesn't apply.</p>
+
+<p>For the moby installation, we had to write a wrapper shell-script that set up the proper environment variables before launching the actual server program, and then put a pointer to that wrapper into the Apache configuration, rather than have Apache launch the server directly. You might end up having to do something like this too.</p>
+
+<h2>A Note on Perl, Catalyst, and some further reading</h2>
+
+<p>Maintainers of this software should have a basic familiarity with the Catalyst system. The best book on the topic, at the time of this writing is <em>The Definitive Guide to Catalyst</em>, by Kieren Diment and Matt S Trout, published in 2009 by Apress. </p>
+
+<p>Ideally, you should have some programming skill, and either knowledge of - or the willingness to learn - Perl, and modern Perl-style. Again, the Catalyst book is a most excellent starting point. Other good books on Perl:</p>
+
+<ul>
+	<li>Programming Perl, Third Edition, by Wall, Orwant and Christiansen, published in 2000 by O'Reilly Media.</li>
+</ul>
+
+
+<ul>
+	<li>Perl Best Practices, by Damian Conway, published in 2005 by O'Reilly Media.</li>
+</ul>
+
+
+<h2>License</h2>
+
+<p>Copyright 2010-2011 Tufts University.</p>
+
+<p>The TAPER software suite and its accompanying documentation are made available under the GNU Affero General Public License (AGPL) v3.</p>
+
+<p>This file is part of the TAPER software suite.</p>
+
+<p>The TAPER software suite is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The TAPER software suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with the TAPER software suite.  If not, see &lt;<a href="http://www.gnu.org/licenses/" rel="nofollow">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+
+<p>The development of the TAPER software suite was funded by the <a
+href="http://www.archives.gov/nhprc">National Historical Publications and
+Records Commission (NHPRC)</a>. Grant number RE10005-08.</p>
+
+<h3>Authors</h3>
+
+<p>Jason McIntosh, Appleseed Consulting<br/>
+Doug Orleans, Appleseed Consulting<br/>
+Deborah Kaplan, Tufts University Digital Collections and Archives</p>
+
+<h3>Versions</h3>
+
+<p>This document revised:</p>
+
+<p>2011-06-17</p>
+
+</body>
+</html>

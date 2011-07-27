@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+            <title>The Submission Agreement Builder Tool - TAPER: Tufts Accessioning Program for Electronic Records - Confluence</title>
+    
+</head><body>    
+            <h1>The TAPER web application</h1>
+
+<p>The TAPER web application serves the following purposes:</p>
+
+<ul>
+	<li>Gives endusers a friendly, wizard-ish interface for creating new RSA documents</li>
+	<li>Gives staff an administrative interface for approving and finishing these documents (and also alerts the staffwhen new RSAs are awaiting approval)</li>
+	<li>Allows staff to create and maintain SSA documents</li>
+	<li>Allows staff to control access to the TAPER web application.</li>
+</ul>
+
+
+<p>The first three tasks make up the part of the application known as the Submission Agreement Builder Tool (SABT).</p>
+
+<h2>Location</h2>
+
+<p>All the code, configuration files, and templates that make up the web application are in the TAPER Subversion repository, in the directory <tt>TAPER/</tt>. The contents are organized in a fashion typical for a Catalyst-based web application.</p>
+
+<h2>Front end</h2>
+
+<h3>Templates</h3>
+
+<p>The templates that define the web pages' content are in <tt>TAPER/root/src</tt>. Per Catalyst best practices, they are Template Toolkit files, and are intended to be freely editable by non-coders, as necessary. (Though non-coders will probably wish to avoid making any changes to any template's TT tags.)</p>
+
+<p>More on Template Toolkit: <a href="http://template-toolkit.org/" rel="nofollow">http://template-toolkit.org/</a></p>
+
+<h3>Forms</h3>
+
+<p>Per Catalyst best practices, many of the TAPER web application's forms are defined by YAML configuration files which are processed by the app's controller modules, by way of the Perl HTML::FormFu CPAN module (c.f.). They may be found in <tt>TAPER/root/forms</tt>.</p>
+
+<p>Non-coders can, to a certain extent, modify these files in order to customize things like error message text, or form labels, or class attributes (for CSS styling purposes). Be aware that changing other information, such as the form fields' names or ID attributes, can cause them to not work any more (unless, of course, you <em>are</em> a coder, and make appropriate changes to the corresponding controller code).</p>
+
+<h3>CSS</h3>
+
+<p>The application's CSS file is in <tt>TAPER/root/static/css</tt>.</p>
+
+
+<h2>Backend</h2>
+
+<p>The TAPER web app hangs on the Catalyst framework, and is constructed with an adherence to Catalyst best practices, so that general reference material about Catalyst should apply to the TAPER code. Please see <a href="TAPER+software+nuts+and+bolts.html">TAPER software nuts and bolts</a> for more information about its gory details, and pointers to further reading.</p>
+
+<p>The namespace that its Perl-based backend uses is <tt>TAPER</tt>. Thus, its sub-components start with prefixes like <tt>TAPER::Controller</tt>, <tt>TAPER::Schema</tt>, et cetera.</p>
+
+<h2>Authentication</h2>
+
+<p>To authenticate with the TAPER web application, two things must be true about the user:</p>
+
+<p> 1. They must have an account on the LDAP system defined in taper.conf or taper_local.conf.<br/>
+ 2. They must have an account with the TAPER web application.</p>
+
+<p>Both are needed because the TAPER app doesn't store any password information, instead relying entirely on LDAP for login-time authentication.</p>
+
+<p>After the user authenticates with LDAP, the app makes sure that the user also has representation within TAPER's own database. If they do, they're welcomed into the application.</p>
+
+<h2>Developer documentation</h2>
+
+<p>You can find the web app's developer documentation attached to the Perl modules that define its backend. Every module that bears an API ends with a section of POD (inline Perl) documentation, which you can read either by opening that module in a text editor or (more likely) feeding it to the <tt>perldoc</tt> command-line program.</p>
+
+<p>Start your reading with <tt>lib/TAPER.pm</tt>, which should contain adequate pointers for the other modules, and their associated documentation.</p>
+
+<h2>Configuration</h2>
+
+<p>See <a href="taper.conf.html">taper.conf</a>.</p>
+
+
+<h2>License</h2>
+
+<p>Copyright 2010-2011 Tufts University.</p>
+
+<p>The TAPER software suite and its accompanying documentation are made available under the GNU Affero General Public License (AGPL) v3.</p>
+
+<p>This file is part of the TAPER software suite.</p>
+
+<p>The TAPER software suite is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The TAPER software suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with the TAPER software suite.  If not, see &lt;<a href="http://www.gnu.org/licenses/" rel="nofollow">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+
+<p>The development of the TAPER software suite was funded by the <a
+href="http://www.archives.gov/nhprc">National Historical Publications and
+Records Commission (NHPRC)</a>. Grant number RE10005-08.</p>
+
+<h3>Authors</h3>
+
+<p>Jason McIntosh, Appleseed Consulting<br/>
+Doug Orleans, Appleseed Consulting<br/>
+Deborah Kaplan, Tufts University Digital Collections and Archives</p>
+
+<h3>Versions</h3>
+
+<p>This document revised:</p>
+
+<p>2011-06-17</p>
+
+</body>
+</html>

@@ -1,0 +1,1462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+            <title>Element List--Submission Agreements 2.0 - TAPER: Tufts Accessioning Program for Electronic Records - Confluence</title>
+            </head>
+<body>
+            <h1>Element List</h1>
+
+
+<h2>Introduction</h2>
+
+<p>This page has an Introduction, a Brief Element Set Table, and a Full Element Set Table that includes a key to the fields within a table.</p>
+
+<h3>Purpose</h3>
+
+<p>This element set identifies the elements that compose a submission agreement (both a <a href="Standing+vs+Regular+Submission+Agreements.html">regular and standing</a> submission agreement). The element set will likely evolve over the course of developing the submission agreement XML schema. This document has not yet received a careful edit so typos surely abound. This element set is illustrated in part by the accompanying <a href="Case+Study+One+Submission+Agreements.html">case study</a>.</p>
+
+<h2>Brief Element List Table</h2>
+
+<div>
+<table><tbody>
+<tr>
+<th> Element Category </th>
+<th> Element <br /> </th>
+<th> Form type <br /> </th>
+<th> SSA </th>
+<th> RSA </th>
+</tr>
+<tr>
+<td> Submission Agreement Management </td>
+<td> Submission Agreement ID <br /> </td>
+<td> Auto - not on form <br /> </td>
+<td> R </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Submission Agreement Type </td>
+<td> Auto - not on form </td>
+<td> R <br /> </td>
+<td> R </td>
+</tr>
+<tr>
+<td> History </td>
+<td> activation </td>
+<td> Inherit from SSA </td>
+<td> O </td>
+<td> O </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> producerEndorsement </td>
+<td> Automatically generated when the "submit to DCA" button is pressed. <br /> </td>
+<td> O </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> archiveEndorsement </td>
+<td> Post-process DCA entry - not on form </td>
+<td> R <br /> </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Expiration </td>
+<td> Post-process DCA entry - not on form </td>
+<td> O </td>
+<td> O </td>
+</tr>
+<tr>
+<td> Audit </td>
+<td> Created </td>
+<td> Auto or post-process DCA entry - not on form <br /> </td>
+<td> R <br /> </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Edited </td>
+<td> Auto or post-process DCA entry - not on form <br /> </td>
+<td> O </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Committed </td>
+<td> Auto or post-process DCA entry - not on form </td>
+<td> O </td>
+<td> O </td>
+</tr>
+<tr>
+<td> Archive <br /> </td>
+<td> Archive ID <br /> </td>
+<td> Inherit from SSA (will always be "Tufts University Digital Collection and Archives") <br /> </td>
+<td> R <br /> </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Warrant to Collect <br /> </td>
+<td> Inherit from SSA <br /> </td>
+<td> O <br /> </td>
+<td> O </td>
+</tr>
+<tr>
+<td> Ingest Project Management <br /> </td>
+<td> Accession Number <br /> </td>
+<td> Post-process DCA entry - not on form <br /> </td>
+<td> N <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Activity Log Number <br /> </td>
+<td> Post-process DCA entry - not on form </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Survey Report ID <br /> </td>
+<td> Post-process DCA entry - not on form </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td> Producer <br /> </td>
+<td> Records Creator Records <br /> </td>
+<td> Inherit from SSA </td>
+<td> R <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Records Producer <br /> </td>
+<td> Inherit from SSA </td>
+<td> R </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Recordkeeping System <br /> </td>
+<td> drop down&nbsp; list <br /> </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td> Records <br /> </td>
+<td> General Records Description <br /> </td>
+<td> Text <br /> </td>
+<td> O <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Record Type Record <br /> </td>
+<td> Inherit from SSA </td>
+<td> R <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Format Type </td>
+<td> Check-box <br /> </td>
+<td> O <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Date Span <br /> </td>
+<td> Date fields <br /> </td>
+<td> N <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Extent </td>
+<td> "value" attribute will be limited by numeric digits and "units" attribute will be a drop down list <br /> </td>
+<td> N <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Copyright <br /> </td>
+<td> Inherit from SSA </td>
+<td> R <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Access <br /> </td>
+<td> Inherit from SSA </td>
+<td> R <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Arrangement and Naming Scheme <br /> </td>
+<td> text with popup <br /> </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Retention Period </td>
+<td> Inherit from SSA </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Retention Alert Date <br /> </td>
+<td> Post-process DCA entry - not on form <br /> </td>
+<td> O </td>
+<td> O </td>
+</tr>
+<tr>
+<td> Producer to Archive <br /> </td>
+<td> SIP Creation and Transfer <br /> </td>
+<td> Check boxes <br /> </td>
+<td> N <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> SIP Transfer Drop Box <br /> </td>
+<td> dropboxURL attribute - inherit from SSA <br /> </td>
+<td> R <br /> </td>
+<td> R </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Transfer Date </td>
+<td> Post-process DCA entry - not on form </td>
+<td> N <br /> </td>
+<td> R <br /> </td>
+</tr>
+<tr>
+<td> Archival Management <br /> </td>
+<td> SIP to AIP <br /> </td>
+<td> Inherit from SSA <br /> </td>
+<td> N <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Archival Description Standard <br /> </td>
+<td> Post-process DCA entry - not on form </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Respect de Fonds&nbsp; <br /> </td>
+<td> Post-process DCA entry - not on form </td>
+<td> O <br /> </td>
+<td> O <br /> </td>
+</tr>
+</tbody></table>
+</div>
+
+
+<h2>Full Element List Table</h2>
+
+
+<h3>Field Key</h3>
+
+
+<h4>Element Category</h4>
+
+<p>Groupings or categories of elements. This category exists to help project staff and contractors think about the submission agreement elements. The Element Categories do not have any significance in a submission agreement and do not need to be conveyed in the submission agreement XML schema.</p>
+
+<h4>Element</h4>
+
+<p>The names of the elements that compose a submission agreement.</p>
+
+<h4>Description &amp; Purpose</h4>
+
+<p>A free-text general description of an element.</p>
+
+<h4>Properties</h4>
+
+<p>Information about the nature and qualities of an element along with the nature and quality of the data that is in an element. This field has sub-elements (listed below)</p>
+
+<p><b>R/O</b><br/>
+<em>Required</em> or <em>Optional</em></p>
+
+<p><b>All/Some</b><br/>
+<em>All</em> or <em>Some</em><br/>
+<em>All</em> = The data in the element MUST refer to <em>all</em> the records in an Ingest Project covered by the submission agreement<br/>
+<em>Some</em> = The data in the element MUST refer to <em>all</em> or <em>some</em> of the records in an Ingest Project covered by the submission agreement</p>
+
+<p><b>Repeatable</b><br/>
+<em>Yes</em> or <em>No</em>.<br/>
+Is the element repeatable?</p>
+
+<p><b>Ref Rule DB/Inline</b><br/>
+<em>Ref Rule DB</em> and/or <em>Inline</em>.<br/>
+<em>Ref Rule DB</em> = The data in the element references an external rule.<br/>
+<em>Inline</em> = The data in the element does <em>not</em> reference an external rule. All information is contained within the data in the element.</p>
+
+<p><b>Data Content</b><br/>
+A general description of the data in the element. This a very abbreviated data content standard statement.<br/>
+<em>Free Text</em> or <em>Text Controlled</em> or <em>alpa-numeric string local</em> or <em>alpa-numeric string standard</em> or <em>date string</em><br/>
+<em>Free Text</em> = Free text sentences or paragraph<br/>
+<em>Text Controlled</em> = A textual title that is from a controlled vocabulary.<br/>
+<em>alpha-numeric string local</em> = An alpha-numeric code that has local (archive) significance. <em>For example</em>: j2008.024<br/>
+<em>alpha-numeric string standard</em> = An alpha-numeric code that uses a national or international standard like an ISBN number.<br/>
+<em>date string</em> = A date or date span.</p>
+
+<h4>Implementation Notes Column</h4>
+
+<p>Notes about implementing this element in a standing and regular submission agreement along with implementation examples. See <a href="Standing+vs+Regular+Submission+Agreements.html">Standing vs Regular Submission Agreements</a> for more details.</p>
+
+<p><b>Regular</b> Notes about implementing the element in a regular submission agreement.</p>
+
+<p><b>Regular Example</b> An example of element data in a regular submission agreement. This example is illustrative only and is not meant to define a data content rule.</p>
+
+<p><b>Standing</b> Notes about implementing the element in a standing submission agreement.</p>
+
+<p><b>Standing Example</b> An example of element data in a standing submission agreement. This example is illustrative only and is not meant to define a data content rule.</p>
+
+<h3>Concerns</h3>
+
+<ol>
+	<li>Applying information in an element within a submission agreement to some but not all of the records covered by a submission agreement. For more details on this issue, see <a href="Case+Study+One+Submission+Agreements.html">Case Study One</a>.</li>
+	<li>The difference between Standing and Regular submission agreements. For more details on this issue, see <a href="Standing+vs+Regular+Submission+Agreements.html">Standing vs Regular Submission Agreements</a>.</li>
+	<li>It appears that all elements that are <em>Some</em> in the <b>All/Some</b> subfield are by definition <em>Repeatable</em>. However, all elements that are <em>All</em> in the <b>All/Some</b> subfield are not necessarily not <em>Repeatable</em>.&nbsp;&nbsp;</li>
+	<li>Currently there is <em>not</em> an element in the element table for indicating if a submission agreement is standing or regular. But obviously this characteristic of a submission agreement needs to be indicated somehow.&nbsp;</li>
+	<li>Currently there is <em>not</em> an element in the element table that explicitly delineates separate series within a single ingest project, as illustrated in <a href="Case+Study+One+Submission+Agreements.html">Case Study One</a>. This needs to be delineated somehow, but its not clear if this needs to be addressed by an element within the XML schema or if some other solution is appropriate.&nbsp; &nbsp;</li>
+</ol>
+
+
+<div>
+<table><tbody>
+<tr>
+<th> Element Category </th>
+<th> Element </th>
+<th> Description &amp; Purpose </th>
+<th> Schema Properties </th>
+<th> Data Content Rules &amp; Examples <br /> </th>
+<th> Implementation in the SABT <br /> </th>
+</tr>
+<tr>
+<td> Submission Agreement Management </td>
+<td> Submission Agreement ID </td>
+<td> Provides a local unique identifier for each submission agreement.&nbsp; <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>Ref Rule DB/Inline</b> Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local&nbsp; <br />
+<br />
+<b>Rules/Notes</b> <br />
+TBD <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local implementation <br />
+<br />
+<b>SSA Example</b> <br />
+SSA0001 or SSA2009.001 <br />
+<br />
+<b>RSA Example</b> <br />
+RSA0001 or RSA2009.001 </td>
+<td> SAME. Automatically generated by SABT <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Submission Agreement Type </td>
+<td> Identifies a submission agreement as a Standing Submission Agreement (SSA) or a Regular Submission Agreement (RSA).&nbsp; <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>Ref Rule DB/Inline</b> Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local&nbsp;&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+TBD <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+Standing Submission Agreement <br />
+<em>or</em><br />
+Regular Submission Agreement <br />
+<br />
+<b>SSA Example</b> <br />
+Standing Submission Agreement <br />
+<br />
+<b>RSA Example</b> <br />
+Regular Submission Agreement </td>
+<td> SAME. Automatically generated by SABT </td>
+</tr>
+<tr>
+<td> History </td>
+<td> Activation </td>
+<td> The date that the Standing Submission Agreement goes into effect </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>Ref Rule DB/Inline</b> Inline </td>
+<td> Rules/Notes <br />
+1. Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY <br />
+Enforcement Location(s) <br />
+Schema <br />
+Schema Rules <br />
+YYYY-MM-DD <br />
+SSA Example <br />
+2009-10-23 <br />
+RSA Example <br />
+2009-10-23 </td>
+<td> SAME. Automatically generated by SABT </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> producerEndorsement </td>
+<td> The date that a producer endorses a submission agreement. </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+no <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> Rules/Notes <br />
+1. Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY <br />
+Enforcement Location(s) <br />
+Schema <br />
+Schema Rules <br />
+YYYY-MM-DD <br />
+SSA Example <br />
+2009-10-23 <br />
+RSA Example <br />
+2009-10-23 &#124; </td>
+<td> SAME.&nbsp; Automatically generated by the system when the producer submits the draft of the RSA. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> archivesEndorsement <br /> </td>
+<td> The date that the archive endorses a submission agreement. </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+no <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br />
+<br /> </td>
+<td> <b>Type</b>&nbsp; <br />
+Date String&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD &nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+2009-10-23 <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23 <br />
+&nbsp; <br /> </td>
+<td> <br />  <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Expiration <br /> </td>
+<td> Date the agreement expires <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+&nbsp; Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+&nbsp; No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> <b>Type</b>&nbsp; <br />
+Date String&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD &nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+2009-10-23 <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23 </td>
+<td> <br /> </td>
+</tr>
+<tr>
+<td> Audit </td>
+<td> Created </td>
+<td> The date the record was first created <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+&nbsp; Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+&nbsp; No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> <b>Type</b>&nbsp; <br />
+Date String&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD &nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+2009-10-23 <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23 </td>
+<td> <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Edited <br /> </td>
+<td> Each date that an edit takes place <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+&nbsp; Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+&nbsp; Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> <b>Type</b>&nbsp; <br />
+Date String&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD &nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+2009-10-23 <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23 </td>
+<td> <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Commited </td>
+<td> The date it is ingested into FEDORA <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+&nbsp; Optional <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+&nbsp; No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> <b>Type</b>&nbsp; <br />
+Date String&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD &nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+2009-10-23 <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23 </td>
+<td> SAME. We will not be using this field in the tool but it might be edited before ingest into FEDORA. <br /> </td>
+</tr>
+<tr>
+<td> Archive </td>
+<td> Archive ID <br /> </td>
+<td> Clearly identifies the archive with full official name. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+&nbsp; <br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline : exref if EAG is available <br />  <br /> </td>
+<td> <b>Type</b> <br />
+Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> There may be a nationally recognized way to identify an archive. See Describing Archives: A Content Standard (DACS). 2.2 Name and Location of Repository Element.&nbsp; <br />
+<b><em>2.</em></b> An archive may want to hard-code this data when implementing submission agreements since the data should be the same for all of its submission agreements. <br />
+<b><em>3.</em></b> Data may be an external reference if Encoded Archival Guide is available to create records about archival institutions <br />
+<b>Enforcement Location(s)</b> <br />
+Local Implementation&nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+Digital Collections and Archives, Tufts University <br />
+<br />
+<b>RSA Example</b> <br />
+Digital Collections and Archives, Tufts University </td>
+<td> SAME. Static content. It will&nbsp; be "Tufts University Digital Collections and Archives" <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Warrant to Collect </td>
+<td> Identifies policies, charters, charges, or other documents that give the archive the authority to accession, manage, and preserve the records in the ingest project. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef <br />
+<br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Data will normally be the formal title of the authorizing document. Data might also include the location of the document. <br />
+<b><em>2.</em></b> Multiple documents may authorize an archive to collect records (hence this being a repeatable field), although that will be a relatively rare occurrence. <br />
+&nbsp; <br />
+<b>Enforcement Location(s)</b> <br />
+Local Implementation&nbsp; <br />
+<br />
+<b>SSA Example</b> <br />
+University Records Policy, <a href="http://dca.tufts.edu/?pid=19" rel="nofollow">http://dca.tufts.edu/?pid=19</a><br />
+<br />
+<b>RSA Example</b> <br />
+University Records Policy, <a href="http://dca.tufts.edu/?pid=19" rel="nofollow">http://dca.tufts.edu/?pid=19</a>&nbsp; <br /> </td>
+<td> <br />
+<br />  <br /> </td>
+</tr>
+<tr>
+<td> Ingest Project Management </td>
+<td> Accession Number <br /> </td>
+<td> Creates a unique identifier for individual ingest projects of archival materials being transferred to an archive. </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Optional&nbsp; <br />  <br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<em>Notes</em><br />
+<b><em>1.</em></b> An archive may be able to use its Submission Agreement IDs as its accession number and not have the need for a separate accession number id system. However, an archive might also not have a submission agreement for every single accession of records, particularly for small or surprise accessions. <br />
+<b><em>2.</em></b> An accession number usually references an accession log or database. <br />  <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+NA <br />
+<br />
+<b>RSA Example</b> <br />
+2010.024 <br />
+&nbsp; <br /> </td>
+<td> SAME. optional, not repeatable.&nbsp; Will be filled in by DCA staff through the RSA <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Activity Log Number </td>
+<td> An archive may log its activities with records creators, creating log activities for records surveys, transfers, advice, etc. </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef <br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />  <b><em>1.</em></b> An archive may track its interactions with producers and records creators. Not all of these interactions directly involve an ingest project, but an archive may want to track the interaction(s) that are somehow connected to the ingest project covered by the submission agreement. <br />
+<b><em>2.</em></b> An activity log number usually references an activity log or database. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+&nbsp; <br />
+<b>SSA Example</b> <br />
+j2010.085 <br />  <br />
+<b>RSA Example</b> <br />
+j2010.085 </td>
+<td> SAME. optional, repeatable.&nbsp; Will be filled in by DCA staff through the RSA </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Survey Report ID </td>
+<td> A survey report is a document that the archive writes giving an assessment of the records held by a records creator before the records are transferred to the archive.&nbsp; </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef <br />
+<br />
+&nbsp; <br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> An archive sometimes writes a survey report (or multiple reports) of the records involved in an ingest project and it may want to associate that report with the records it accessions. <br />
+<b><em>2.</em></b> Often an archive will associate a survey report with an Activity Log Number, which would normally eliminate the need for using this element. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />  <br />
+<b>SSA Example</b> <br />
+SR2010.011 <br />
+<br />
+<b>RSA Example</b> <br />
+SR2010.011 </td>
+<td> SAME. optional, repeatable.&nbsp; Will be filled in by DCA staff through the RSA </td>
+</tr>
+<tr>
+<td> Producer </td>
+<td> Records Creator Records <br /> </td>
+<td> An (at least locally) authoritative record identifying and describing a records creator (either an organization, a sub-unit within an organization like a department, an individual, or a family).&nbsp;&nbsp; <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br />
+<br />
+<br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local or Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> A submission agreement must reference a records creator, either referencing a separate object (separate database) representing the records creator, or internally containing the name of the records creator if no such external object (database) exists. <br />
+<b><em>2.</em></b> Ideally an archive would have a database of records creator records that a submission agreement can reference. However, many archives do not have such a database so the submission agreement must then at a minimum clearly identify the records creator(s) involved in the ingest project. <br />
+<b><em>3.</em></b> In the context of submission agreements, most records creators will have the status of being a <em>producer</em>, the entity that transfers the records to the archive, but this is not always the case. See "Producer" in the <a href="Glossary+of+Terms.html">Glossary</a>for more details.&nbsp; <br />  <br />
+<br />
+&nbsp; <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+RC0034 or Department of Widget Science, Tufts University <br />  <br />
+<b>RSA Example</b> <br />
+RC0034 or Department of Widget Science, Tufts University <br /> </td>
+<td> SAME. required. <br />  <br />
+Entered in the SSA <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Record Producer <br /> </td>
+<td> Representing the Department or individual with the authority to transfer the records. This is often but not always the same as the records creator <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline </td>
+<td> <b>Type</b> <br />
+alpha-nume. ric string local or Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> A submission agreement must reference a records creator, either referencing a separate object (separate database) representing the records creator, or internally containing the name of the records creator if no such external object (database) exists. <br />
+<b><em>2.</em></b> Ideally an archive would have a database of records creator records that a submission agreement can reference. However, many archives do not have such a database so the submission agreement must then at a minimum clearly identify the records creator(s) involved in the ingest project. <br />
+<b><em>3.</em></b> In the context of submission agreements, most records creators will have the status of being a <em>producer</em>, the entity that transfers the records to the archive, but this is not always the case. See "Producer" in the <a href="Glossary+of+Terms.html">Glossary</a>for more details.&nbsp; <br />  <br />
+<br />
+&nbsp; <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+RC0034 or Department of Widget Science, Tufts University <br />  <br />
+<b>RSA Example</b> <br />
+RC0034 or Department of Widget Science, Tufts University </td>
+<td> SAME. Required. <br />  <br />
+The value from this field will be generated from the Tufts LDAP system.&nbsp; Specifically we are looking for the name of the person authorized by the LDAP and SSA to transfer the records. &nbsp; &nbsp; <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Recordkeeping System </td>
+<td> An (at least locally) authoritative record identifying and describing a recordkeeping system.&nbsp;&nbsp; <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline&nbsp; </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local or Text Controlled <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Few archives currently describe recordkeeping systems but this is becoming an emerging need. <em>For example</em>: Tufts has six registrars offices that all use the same student information system. So student records come from different offices and producers but from the same recordkeeping environment. The archive may need a way to structurally describe this difference in a submission agreement. <br />
+<b><em>2.</em></b> The need for this element might be eliminated if recordkeeping system becomes a class or type within the record creator record. <br />  <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+RKS009 or Student Information System, Tufts University&nbsp; <br />
+<br />
+<b>RSA Example</b> <br />
+RKS009 or Student Information System, Tufts University <br /> </td>
+<td> SAME. optional. <br />  <br />
+We are leaving this field as a place holder.&nbsp; Right now we do not have enough information about the systems used to create and keep records at the University.&nbsp; However, we hope to have a more comprehensive sense of these systems in the future.&nbsp; When we become more aware of these systems we will enter them in post-processing.&nbsp; <br /> </td>
+</tr>
+<tr>
+<td> Records </td>
+<td> General Records Description <br /> </td>
+<td> A submission agreement must have a brief description that provides a narrative description of the circumstances, records creator, and the records covered by the submission agreement as a whole. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+<br />
+<b>All/Some</b> <br />
+All <br />
+<br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Free text&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> An archive may want to map this directly into the scope and content note in its archives management database system. <br />
+<b><em>2.</em></b> data will usually be one to five or so sentences long, a paragraph essentially.&nbsp; <br />  <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Blah blah blah this is descriptive text. <br />
+<br />
+<b>RSA Example</b> <br />
+Blah blah blah this is descriptive text. </td>
+<td> SAME.&nbsp; <br />  <br />
+The records producer is required to type some kind of text into the open field. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Record Type Record </td>
+<td> An (at least locally) authoritative record identifying and describing types, or categories, of records. A submission agreement may identify the record type(s) of the records covered in a submission agreement. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br /> </td>
+<td> <b>Type</b> <br />
+Alpha-numeric string local or Text Controlled <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> A submission agreement should reference a record type record, either referencing a separate object (separate database) representing the record type, or internally containing the name of the records type if no such external object (database) exists. <br />
+<b><em>2.</em></b> Often this external database will take the form of a records retention schedule. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+910 Meeting Minutes and Agenda, <a href="http://dca.tufts.edu/?pid=63#rs910" rel="nofollow">http://dca.tufts.edu/?pid=63#rs910</a> <br />  <br />
+<b>RSA Example</b> <br />
+910 Meeting Minutes and Agenda, <a href="http://dca.tufts.edu/?pid=63#rs910" rel="nofollow">http://dca.tufts.edu/?pid=63#rs910</a>&nbsp; <br /> </td>
+<td> SAME. This type of record will be identified by the DCA in the SSA. The record types are based on the records schedules that are currently on the DCA website. <br />  <br />
+URL should be isolated in its own attribute <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Format Type </td>
+<td> The format of the records covered in a submission agreement <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline&nbsp; </td>
+<td> <b>Type</b> <br />
+Text Controlled or alpha-numeric string local or alpha-numeric string standard <br />
+<br />
+<b>Rules</b> <br />
+<b><em>1.</em></b> A submission agreement must identify the format of the records in an ingest project, ideally referencing a local separate database (real database, registry, or simple list) of formats or an external nationally or internationally recognized format registry. <br />
+<b><em>2.</em></b> If such a local formats database does not exist, the archive must name the formats in the submission agreement even if it does not reference an external database, registry or document. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+PDF/A <br />
+<br />
+<b>RSA Example</b> <br />
+PDF/A <br /> </td>
+<td> SAME. Format options limited to 5 Options can be selected in a checkbox. <br />  <br />
+<br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Date Span <br /> </td>
+<td> The data span of the records records covered by the submission agreement. </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b> <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br /> </td>
+<td> <b>Type</b> <br />
+Date string <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+YYYY-MM <br />
+YYYY <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema <br />
+<b>Schema Rule</b> <br />
+YYYY-MM-DD <br />
+or <br />
+YYYY-MM <br />  <br />
+or <br />
+<br />
+YYYY <br />
+&nbsp; <br />
+<b>SSA Example</b> <br />
+NA <br />
+<br />
+<b>RSA Example</b> <br />
+1995-12 <br /> </td>
+<td> SAME.&nbsp; <br />
+We provide a space for the start date and end date and made it repeatable.&nbsp; <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Extent </td>
+<td> The amount or number of records covered by the submission agreement <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />  <br />
+<b>R/O</b> <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+See Rules/Notes <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> For paper records, extent is usually expressed in linear feet, cubic feet, or number of boxes. For electronic records, extent is usually expressed in byte size or number of files or number of media objects. <br />
+<b><em>2.</em></b> Extent data usually has a numeric value and then a unit of measure.&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />  <br />
+<b>SSA Example</b> <br />
+NA <br />
+<br />
+<b>RSA Example</b> <br />
+12 cu. ft. or 6 record center boxes or 55 MB or 324 files or 7 CDs <br />
+&nbsp; <br /> </td>
+<td> SAME. <br />
+&nbsp;Using drop down box with set types of units to restrict language in that attribute. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Copyright </td>
+<td> Copyright status usually identifies the copyright owner of the records covered by a submission agreement. It may include or reference a licensing agreement or terms of use between the copyright holder and the archive. The copyright status may also identify the copyright date and the date the copyright is scheduled to expire. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br /> </td>
+<td> <b>Type</b> <br />
+Free Text or Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Ideally, the identification of the copyright holder will reference an external record creator object (see the Record Creator Records element). In practice many archives will only have a clearly identifiable name in the submission agreement that does not reference an external object or database. <br />
+<b><em>2.</em></b> Data about a licensing agreement may be fully embedded into a submission agreement or a reference to an external document. Because many agreements are so complex and long, they will usually be external documents. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Copyright holder: Allen Anderson. Licensing Agreement with Archive: See Anderson-DCA_copyrightlicense_2008-12-12.pdf.&nbsp;&nbsp; <br />  <br />
+<b>RSA Example</b> <br />
+Copyright holder: Allen Anderson. Licensing Agreement with Archive: See Anderson-DCA_copyrightlicense_2008-12-12.pdf.&nbsp;&nbsp; <br />
+&nbsp; <br /> </td>
+<td> SAME.&nbsp; <br />  <br />
+Entered in the SSA and inherited in the RSA <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Access </td>
+<td> Access rights define who can see what records covered in the submission agreement when. Access restrictions may include dates of when restrictions are scheduled to end. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Required <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br /> </td>
+<td> <b>Type</b> <br />
+Free Text or Text String <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Many archive will reference access categories that are part of its local policies. <br />
+<b><em>2.</em></b> Some archives will embed the access restrictions entirely within a submission agreement without a reference to an external document. <br />
+<b><em>3.</em></b> Some archives will include dates for the expected lifting of access restrictions.&nbsp; <br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Category 3: General University Records, Closed 20 years from records creation. <a href="http://dca.tufts.edu/?pid=17" rel="nofollow">http://dca.tufts.edu/?pid=17</a>. <br />  <br />
+<b>RSA Example</b> <br />
+Category 3: General University Records, Closed 20 years from records creation. <a href="http://dca.tufts.edu/?pid=17" rel="nofollow">http://dca.tufts.edu/?pid=17</a>.&nbsp; <br /> </td>
+<td> SAME. This will be identified by the DCA in the SSA. The record types are based on the records schedules that are currently on the DCA website. <br />  <br />
+URL should be isolated in its own attribute.&nbsp; <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Arrangement and Naming Scheme </td>
+<td> An arrangement and/or naming scheme created by the records creator that the archive is going to continue to associate with the records covered in the submission agreement. </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Free Text <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> An archive may put this naming or arrangement scheme entirely within a submission agreement. An archive may also refer to an external document that has the naming or arrangement scheme. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Department of Widget Science naming scheme at Widget_namingscheme.doc. <br />
+<br />
+<b>RSA Example</b> <br />
+Department of Widget Science naming scheme at Widget_namingscheme.doc. </td>
+<td> SAME. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Retention Period </td>
+<td> The retention period declares how long the archive must preserve the records covered in a submission agreement. </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Free Text&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Retention periods are either expressed as a time period or an event plus a time period. <br />
+<b><em>2.</em></b> Retention periods should also express the disposition of the records: what happens to the records at the end of the retention schedule. <br />
+<b><em>3.</em></b> Retention periods should also indicate who has the authority to execute the disposition of the records. <br />
+<b><em>4.</em></b> Most records an archive collects are going to have a permanent retention period. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Retain Close of Grant Project + 7 Years, then confidentially destroy. Director of the Archive and Professor John Johnson, Department of Widget Science review records before executing disposition. <br />  <br />
+<b>RSA Example</b> <br />
+Retain Close of Grant Project + 7 Years, then confidentially destroy. Director of the Archive and Professor John Johnson, Department of Widget Science review records before executing disposition. <br /> </td>
+<td> SAME. This will be identified by the DCA in the SSA. The record types are based on the records schedules that are currently on the DCA website. </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Retention Alert Date <br /> </td>
+<td> This will give the exact date for retention action to be taken on the records <br /> </td>
+<td> <b>SSA</b> <br />
+null <br />
+<b>RSA</b> <br />
+Optional <br />
+<b>Repeatable</b> <br />
+yes <br />
+<b>exRef/Inline</b> <br />
+Inline <br /> </td>
+<td> <b>Type:</b> <br />
+ISO year - allow more detailed date. require 4 digit year. <br />
+<br />  <br />
+<b>Rule:</b> <br />
+1. When known, give the exact date for destruction or other activity <br />  <br />
+<b>Example:</b> <br />
+2012/10/20 <br /> </td>
+<td> SAME.Post-processing <br />
+The DCA does not typically take records into the archives that are not set for perminant retention.&nbsp; This field exists for the rare cases where we take something not intended to be perminantly retained into custody. <br /> </td>
+</tr>
+<tr>
+<td> Producer to Archive </td>
+<td> SIP Creation and Transfer <br /> </td>
+<td> This details how the records creator will prepare and transfer&nbsp; the records covered in the submission agreement. See the <a href="Glossary+of+Terms.html">Glossary</a>for more information on SIPs.&nbsp;&nbsp; <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br /> </td>
+<td> <b>Type</b> <br />
+&nbsp; Text <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />  <b><em>1.</em></b> An archive wants to be able to control how it receives records and be able to plan for what it receives. <br />
+<b><em>2.</em></b> Components of a SIP can include: a) the format of records; b) the packaging of the records (put the paper records in a records center box); c) the metadata associated with the records; d) the method of transferring the records to the archive. <br />
+<b><em>3.</em></b> Data in this element ranges from being very regularized, detailed, and extensive to being informal and brief. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+NA <br />  <br />
+<b>RSA Example</b> <br />
+Transfer 100 image files as tifs along with inventory and descriptive metadata; place files in electronic dropbox at <a href="http://foo" rel="nofollow">http://foo</a>. (A very abbreviated example.)&nbsp; <br /> </td>
+<td> SAME. <br />
+<br />  <br />
+Was formally two elements. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> SIP transfer drop box location <br /> </td>
+<td> This attribute of SIP transfer allows the DCA to describe the location of the drop box for their department <br /> </td>
+<td> <b>SSA:</b> <br />
+Required <br />
+<b>RSA:&nbsp;</b> <br />
+Required <br />
+<b>Repeatable:</b> <br />
+Yes <br />
+<b>Exref/Inline:</b> <br /> </td>
+<td> Type: text/ URL <br /> </td>
+<td> SAME. <br />
+One of the main purposes of the SABT is to direct producers to directly deposit their records to their drop box.&nbsp; We will be creating separate drop boxes for each department for security purposes.&nbsp; They will be required to login to the dropbox system. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Transfer Date </td>
+<td> This indicates the date a producer actually transferred records to an archive. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Required <br />  <br />
+<b>Repeatable</b> <br />
+No <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Date String&nbsp; <br />  <br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> Use a recognized date standard, such as ISO 8601. <br />
+YYYY-MM-DD <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Schema &nbsp; <br />  <br />
+<b>Schema Rules</b> <br />
+YYYY-MM-DD <br />
+<br />
+<b>SSA Example</b> <br />
+NA <br />
+<br />
+<b>RSA Example</b> <br />
+2009-10-23&nbsp; <br /> </td>
+<td> SAME. <br />
+This is entered in the post processing.&nbsp; Not on the RSA form <br />
+<br />  <br />
+This is because we would rather have the actual transfer date not the anticipated transfer date provided by the producer. <br /> </td>
+</tr>
+<tr>
+<td> Archival Management </td>
+<td> SIP to AIP </td>
+<td> This details what the archive will do with the records covered in the submission agreement when it receives them from the producer. See the <a href="Glossary+of+Terms.html">Glossary</a>for more information on AIPs. <br /> </td>
+<td> <b>SSA R/O/N</b> <br />
+Null <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+Inline </td>
+<td> <b>Type</b> <br />
+Free Text&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> An archive may want to document how it transforms its SIPs to AIPs to a) facilitate an operation that is transparent to the producer b) support the semi-automation of its management and preservation of the records it receives from producers. <br />
+<b><em>2.</em></b> Components of a SIP to AIP can include: a) migration of records from one format to another; b) creation of derivative datastreams; c) associated metadata. <br />
+<b><em>3.</em></b> Data in this element range from being very regularized, detailed, and extensive to being informal and brief.&nbsp; <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />  <br />
+<b>SSA Example</b> <br />
+NA <br />
+<br />
+<b>RSA Example</b> <br />
+Maintain tifs, create full and thumbnail datastreams. (A very abbreviated example.)&nbsp; <br /> </td>
+<td> SAME. <br />  <br />
+We are populating this field by having various preservation statements&nbsp; attached to the format types.&nbsp; So when the producer selects a format type they are automatically shown the corresponding preservation statement in the RSA form. <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Archival Description Standard </td>
+<td> The descriptive standards the archive will use to describe the records covered by the submission agreement.&nbsp; </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef or Inline <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+Text Controlled&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />
+<b><em>1.</em></b> An archive may list the name of archival descriptive standard without making a reference to any external resource. But an archive may choose to reference an external resource, usually a website with the official version of the standard. <br />
+<b><em>2.</em></b> An archive may use multiple descriptive standards on a set of records. <br />
+<br />  <b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+Encoded Archival Description (EAD). <a href="http://www.loc.gov/ead/" rel="nofollow">http://www.loc.gov/ead/</a>.&nbsp; <br />  <br />
+<b>RSA Example</b> <br />
+Encoded Archival Description (EAD). <a href="http://www.loc.gov/ead/" rel="nofollow">http://www.loc.gov/ead/</a>.&nbsp; <br /> </td>
+<td> SAME. Post processing <br /> </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td> Respect de Fonds <br /> </td>
+<td> The archival collection or fonds (the intellectual home) the records covered by the ingest project will belong to when the archive manages the record.&nbsp; </td>
+<td> <b>SSA R/O/N</b> <br />
+Optional <br />
+<br />
+<b>RSA R/O/N</b>&nbsp; <br />
+Optional <br />
+<br />
+<b>Repeatable</b> <br />
+Yes <br />
+<br />
+<b>ExRef/Inline</b> <br />
+ExRef <br />
+<br /> </td>
+<td> <b>Type</b> <br />
+alpha-numeric string local&nbsp; <br />
+<br />
+<b>Rules</b><b>/Notes</b> <br />  <b><em>1.</em></b> Normally a set of records covered by a submission agreement will be associated with a single archival collection. But on occasion, an archive will associate portions of a set of records to multiple collections. <br />
+<b><em>2.</em></b> The data will always reference the archival collection or fonds record in the archive's archival management database system or other database. <br />
+<br />
+<b>Enforcement Location(s)</b> <br />
+Local Enforcement <br />
+<br />
+<b>SSA Example</b> <br />
+UA041 Department of Widget Science records <br />
+<br />
+<b>RSA Example</b> <br />
+UA041 Department of Widget Science records&nbsp; <br /> </td>
+<td> SAME.&nbsp; <br />  <br />
+The collection number that the records end up in.&nbsp; <br /> </td>
+</tr>
+</tbody></table>
+</div>
+
+<p><br /></p>
+
+<h2>License</h2>
+
+<p>Copyright 2010-2011 Tufts University.</p>
+
+<p>The TAPER software suite and its accompanying documentation are made available under the GNU Affero General Public License (AGPL) v3.</p>
+
+<p>This file is part of the TAPER software suite.</p>
+
+<p>The TAPER software suite is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The TAPER software suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with the TAPER software suite.  If not, see &lt;<a href="http://www.gnu.org/licenses/" rel="nofollow">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+
+<p>The development of the TAPER software suite was funded by the <a
+href="http://www.archives.gov/nhprc">National Historical Publications and
+Records Commission (NHPRC)</a>. Grant number RE10005-08.</p>
+
+<h3>Authors</h3>
+
+<p>Krista Ferrante, Tufts University Digital Collections and Archives<br/>
+Eliot Wilczek, Tufts University Digital Collections and Archives<br/>
+Veronica Martzahl, Tufts University Digital Collections and Archives</p>
+
+<h3>Versions</h3>
+
+<p>This document revised:</p>
+
+<p>2011-06-17</p>
+
+   </body>
+</html>

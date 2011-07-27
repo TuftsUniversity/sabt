@@ -1,3 +1,9 @@
+Schemas and documentation are in the "schema" and "doc"
+directories. The code for the Submission Agreement Builder Tool
+(SABT) is in the TAPER directory.
+
+The TAPER directory:
+
 Edit taper.conf, or copy to taper_local.conf and edit that, to change
 the following for your local configuration:
 

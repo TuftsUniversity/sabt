@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+            <title>taper.conf - TAPER: Tufts Accessioning Program for Electronic Records - Confluence</title>
+    
+</head><body>    
+            <h1>taper.conf - the TAPER web app configuration file</h1>
+
+<p>The TAPER web application configuration file is <tt>taper.conf</tt>, which must exist at the app's root level. It's a standard Unix-ish configuration file, similar to Apache's <tt>httpd.conf</tt>. You can also create a copy of taper.conf named <tt>taper_local.conf</tt>  and make your changes and local customizations there. We recommend you use this process, in order to prevent your local customizations from being overwritten when you update your code.</p>
+
+<p>When installing the TAPER web app onto a new system (or a new location on a given system), then you <em>must</em> update taper.conf or taper_local.conf appropriately. Otherwise, TAPER apps will not work.</p>
+
+<p>A boilerplate version of the file is in Subversion, but you'll almost certainly want to modify it after either creating a new TAPER web app installation, or moving an existing one to a new location.</p>
+
+<h2>Configuration parameters</h2>
+
+<h3>archive_id</h3>
+
+<p>The string that the SABT uses to identify the archive constructing the submission agreement. </p>
+
+<p>Example: <tt>Digital Collections and Archives, Tufts University</tt></p>
+
+<h3>session</h3>
+
+<p>Three parameters:</p>
+
+<ul>
+	<li><b>storage</b> The directory (relative to the web application's root) where session information files get written.</li>
+	<li><b>cookie_expires</b> The TTL of session cookies.</li>
+	<li><b>expires</b> The TTL of sessions (apart from cookies).</li>
+</ul>
+
+
+<p>Yes, you must set <em>both</em> <tt>cookie_expires</tt> and <tt>expires</tt>, due to a foible of a third-party session-handling library we're using. Yes, that's a bit wonky. Sorry...</p>
+
+<p>Example:<br/>
+{{<br/>
+&lt;session&gt;<br/>
+    storage run/session<br/>
+    cookie_expires 28800<br/>
+    expires 28800<br/>
+&lt;/session&gt;<br/>
+}}</p>
+
+<h3>authentication</h3>
+
+<p>This section is a bit mucky, specific to the needs of the underlying LDAP-authenticating Perl module, and too complex to go into here. </p>
+
+<p>You'll need to modify this section as necessary in order to please your own LDAP server. Please consult the documentation for Catalyst::Plugin::Authenticaion::Store for more details.</p>
+
+<h3>dca_staff_email</h3>
+
+<p>The email address that the SABT will send mail to  when someone creates a new RSA draft. </p>
+
+<p>The value of this directive is literally copied to the outgoing email's <tt>To:</tt> field. Therefore, to mail multiple entities, just concatenate addresses with a comma.</p>
+
+<p>Example 1:</p>
+
+<p><tt>dca_staff_email    dca@example.com</tt></p>
+
+<p>Example 2:</p>
+
+<p><tt>dca_staff_email    "dca@example.com, jane_doe@example.com"</tt></p>
+
+<h3>from_name</h3>
+<h3>from_address</h3>
+
+<p>These two directives define the name and email address that the new-RSA email will appear to come from.</p>
+
+<p>Example:<br/>
+<tt>from_name    Submission Agreement Builder Tool</tt><br/>
+<tt>from_name    noreply@example.com</tt></p>
+
+<h3>email</h3>
+
+<p>This group of directives defines the resources that the TAPER web application will use for sending mail.</p>
+
+<p>This one's a little opaque. You must define one <b>email</b> directive line for every argument you wish to send to the underlying email module. You can often get by with two lines: one to define the email protocol, and another for the relevant hostname. </p>
+
+<p>See the documentation for Catalyst::Plugin::Email for full configuration information (as these config lines are sent directly to this plugin).</p>
+
+<p>Example (using both lines):<br/>
+<tt>email SMTP</tt><br/>
+<tt>email localhost</tt></p>
+
+<h3>rsa_staging_directory</h3>
+
+<p>The absolute path to the directory where the SABT will write its RSA draft files.</p>
+
+<p>This directory needs to be writeable by the webuser (or whatever user is running the web server that the TAPER web app uses).</p>
+
+<h3>ssa_directory</h3>
+
+<p>The absolute path to the directory where the SABT will write its SSA files.</p>
+
+<p>This directory needs to be writeable by the webuser (or whatever user is running the web server that the TAPER web app uses).</p>
+
+
+<h2>License</h2>
+
+<p>Copyright 2010-2011 Tufts University.</p>
+
+<p>The TAPER software suite and its accompanying documentation are made available under the GNU Affero General Public License (AGPL) v3.</p>
+
+<p>This file is part of the TAPER software suite.</p>
+
+<p>The TAPER software suite is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The TAPER software suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with the TAPER software suite.  If not, see &lt;<a href="http://www.gnu.org/licenses/" rel="nofollow">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+
+<p>The development of the TAPER software suite was funded by the <a
+href="http://www.archives.gov/nhprc">National Historical Publications and
+Records Commission (NHPRC)</a>. Grant number RE10005-08.</p>
+
+<h3>Authors</h3>
+
+<p>Jason McIntosh, Appleseed Consulting<br/>
+Doug Orleans, Appleseed Consulting<br/>
+Deborah Kaplan, Tufts University Digital Collections and Archives</p>
+
+<h3>Versions</h3>
+
+<p>This document revised:</p>
+
+<p>2011-06-17</p>
+
+</body>
+</html>

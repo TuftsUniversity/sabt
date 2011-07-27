@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+            <title>Software map - TAPER: Tufts Accessioning Program for Electronic Records - Confluence</title>
+</head><body>    
+            <h1>TAPER software map</h1>
+
+<p>This page describes the layout of the TAPER software, templates, and assets as found in Subversion and/or Git. It does not describe how to turn all this into a working TAPER instance; please refer to <a href="TAPER+software+nuts+and+bolts.html">TAPER software nuts and bolts</a> for guidance on that topic. Nor does it contain any deep developer documentation &#8211; please refer to the modules themselves (rather, their attached POD docs) for that.</p>
+
+<p>Depending on where you got the TAPER code, you may have checked the code out of either a Subversion (SVN) or a Git repository. This document assumes that you checked it out of a Subversion repository. If you checked it out of Git, you will need to modify any Subversion commands accordingly.</p>
+
+<h2>Top-level branches</h2>
+
+<p>At the SVN root, there exist two branches, <tt>trunk</tt> and <tt>production</tt>. The structures found underneath them are identical, though their precise content may differ.</p>
+
+<p>The <tt>trunk</tt> branch is intended to the be safe development branch, and corresponds to the code running on a staging environment, in its <tt>/tdr/bin/taper/</tt> directory.</p>
+
+<p>Developers should feel free to make commits into <tt>trunk</tt> for the purpose of testing the code in staging &#8211; after making sure that it works on their local development environment, of course, and furthermore determining that it doesn't break any regression tests found in <tt>TAPER/t</tt> (described more below, under "Other TAPER files and directories"). </p>
+
+<p>If all seems well, one can push the changes into the production environment by using the appropriate <tt>svn merge</tt> commands.</p>
+
+<h2>Branch subdirectories</h2>
+
+<p>A list of the directories found directly within either branch:</p>
+
+<ul>
+	<li>TAPER</li>
+</ul>
+
+
+<p>This contains the all the assets and code of the web application itself. We'll map it further, below.</p>
+
+<ul>
+	<li>doc</li>
+</ul>
+
+
+<p>Miscellaneous documentation written during SABT's development.</p>
+
+<ul>
+	<li>schema</li>
+</ul>
+
+
+<p>The XML Schema files that define the TAPER submission agreement document format, and supporting materials. See also <a href="The+Submission+Agreement+XML+Schemas.html">The Submission Agreement XML Schemas</a>.</p>
+
+<ul>
+	<li>sql</li>
+</ul>
+
+
+<p>Contains a file filled with SQL commands that, when fed to MySQL, can create an empty TAPER database.</p>
+
+<h2>The TAPER subdirectory</h2>
+
+<p>The <tt>TAPER</tt> directory, found in either branch, contains the complete Catalyst-based web application that makes up the SABT.</p>
+
+<p>This is the specific directory that you can check out onto a server in order to rapidly roll out a TAPER software instance, as described in <a href="TAPER+software+nuts+and+bolts.html">TAPER software nuts and bolts</a> and <a href="The+Submission+Agreement+Builder+Tool.html">The Submission Agreement Builder Tool</a>.</p>
+
+<p>Let's drill down and have a look at the directories found underneath TAPER...</p>
+
+<h2>root: The front end</h2>
+
+<p>The <tt>root</tt> directory contains everything that makes up the application's front end, including HTML, CSS, JavaScript, and email and web-form templates.</p>
+
+<p>Many of the templates are written in a language called Template Toolkit. Explaining TT is outside the scope of this documentation, but you can find a wealth of docs here: <a href="http://template-toolkit.org/" rel="nofollow">http://template-toolkit.org/</a></p>
+
+<ul>
+	<li>root/src</li>
+</ul>
+
+
+<p>Contains the Template Toolkit template files that make up the site's dynamic content.</p>
+
+<p>There are several subdirectories here, and the files' names and locations usually correspond to URL paths, but it's ultimately up to the paths' various Catalyst controller actions to decide which template files to use.</p>
+
+
+<ul>
+	<li>root/lib</li>
+</ul>
+
+
+<p>Contains Template Toolkit template files that defines the site's "wrapper" content - the HTML that comprises, and points to the SABT's CSS and JavaScript files.</p>
+
+<p>The <tt>root/lib</tt> directory is not to be confused with the <tt>lib</tt> directory, which contains all of the web application's backend code (and which is described in its own section, below).</p>
+
+<p>NB: If you need to edit the stuff that goes into the rendered HTML &lt;head&gt; element, look at <tt>root/lib/wrapper</tt>. (In fact, at the time of this writing, that's the only file that exists in <tt>root/lib</tt>, so there you go.)</p>
+
+<ul>
+	<li>root/static</li>
+</ul>
+
+
+<p>Contains all the non-dynamic, non-templated stuff within the front end, including:</p>
+
+<ul>
+	<li>root/static/css</li>
+</ul>
+
+
+<p>Contains the SABT's CSS file.</p>
+
+<ul>
+	<li>root/static/images</li>
+</ul>
+
+
+<p>Contains various site-specific images.</p>
+
+<p>NB: At the time of SABT's launch, this directory contained only Catalyst stock art ("Powered by Catalyst" images and such). All the images that contribute to the site's layout come from elsewhere at Tufts, and are invoked by the site's CSS stylesheet. Note that if you are using this code outside of Tufts University, the default templates draw images and CSS from Tufts University URLs. You will probably want to change these.</p>
+
+<ul>
+	<li>root/mail</li>
+</ul>
+
+
+<p>Contains Template Toolkit files that help define the email the app is capable of sending. It contains one subdirectory for each class of sendable email, and each of these in turn contains <tt>subject.tt2</tt> and <tt>body.tt2</tt> template file which serve the purposes their names suggest.</p>
+
+<p>At the time of this writing the only <tt>root/mail</tt> subdirectory is <tt>new_rsa_notification</tt>, containing templates for the email sent to DCA staff when somebody creates a new RSA file.</p>
+
+<ul>
+	<li>root/forms</li>
+</ul>
+
+
+<p>Contains YAML files that define all the web forms that appear around the site. Besides being valid YAML, these files must be valid in the eyes of Perl's HTML::FormFu software, which the TAPER software uses to validate and transform form input.</p>
+
+<p>NB: HTML::FormFu is a powerful, complex, cranky, and somewhat poorly documented module. The book "The Definitive Guide to Catalyst" does a good job unpacking it, and describing the same basic use cases at TAPER takes advantage of.</p>
+
+<p>As with <tt>root/src</tt>, the files are stores in subdirectories that suggest their corresponding URL paths, but it's utimately up to individual controller actions to decide which form files they will use. See the manpage for Catalyst::Controller::HTML::FormFu for more information.</p>
+
+<h2>lib: The back end</h2>
+
+<p>The <tt>lib</tt> directory contains all the Perl-based code that constitutes TAPER's back end. There should be no surprises here for anyone familiar with Catalyst library-structure convention, but here's a quick tour just the same.</p>
+
+<p>Please note that all these modules contain extensive developer documentation in POD format. Use the <tt>perldoc</tt> command-line program, or the other POD-processing tool of your choice, to read them. The following documentation serves more as a quick gloss and map to the library's contents than as usable developer docs.</p>
+
+<ul>
+	<li>lib/HTML</li>
+</ul>
+
+
+<p>Granted, this one's a little unusual. Drill down a few directories, and you'll find several custom subclasses of <tt>HTML::FormFu::Element</tt>. These are used by various web forms around the SABT to create special, SABT-specific form elements that are not covered by the standard HTML::FormFu element set. </p>
+
+<p>Each one has developer documentation attached in POD format.</p>
+
+<ul>
+	<li>lib/TAPER.pm</li>
+</ul>
+
+
+<p>This is the application's core module. Some "nonconfigurable configuration" happens here &#8211; that is, configuation directives whose values should apply across any TAPER software instance, and therefore aren't publicized in the <tt>taper.conf</tt> file.</p>
+
+<p>So, this is where to look if you need to adjust the universe's Planck constant or whatnot.</p>
+
+<ul>
+	<li>lib/TAPER/</li>
+</ul>
+
+
+<p>This directory contains all the modules in the TAPER::* namespace, and everything is arranged according to both Perl and Catalyst standards.</p>
+
+<ul>
+	<li>lib/TAPER/Controller</li>
+</ul>
+
+
+<p>All of the application's controller modules (here using "controller" in the sense of the "model / view / controller" software pattern). No surprises here.</p>
+
+<ul>
+	<li>lib/TAPER/View</li>
+</ul>
+
+
+<p>All the application's view modules (here using "view" in the sense of the "model / view / controller" software pattern).</p>
+
+<p>It contains the logic that the TAPER app needs to apply Template Toolkit to itself, either with or without the website wrapper stuff. (The non-wrapper code is useful for tasks like sending template-based email.)</p>
+
+<ul>
+	<li>lib/TAPER/Model</li>
+</ul>
+
+
+<p>Modules that interface between the apps' controller and external business logic. Of particular note:</p>
+
+<ul>
+	<li>lib/TAPER/Model/TAPERDB.pm</li>
+</ul>
+
+
+<p>Standard-issue DBIx::Schema model module. (See the TAPER/Schema directory for the real payload.)</p>
+
+<ul>
+	<li>lib/TAPER/Model/RSA.pm</li>
+</ul>
+
+
+<p>Interface for regular submission agreement objects. See TAPER/Logic/RSA.pm.</p>
+
+<ul>
+	<li>lib/TAPER/Model/SSA.pm</li>
+</ul>
+
+
+<p>Interface for standing submission agreement objects. See TAPER/Logic/SSA.pm.</p>
+
+<ul>
+	<li>lib/TAPER/Schema.pm</li>
+</ul>
+
+
+<p>Standard-issue DBIx::Schema base class.</p>
+
+<ul>
+	<li>lib/TAPER/Schema/</li>
+</ul>
+
+
+<p>Here you'll find all of the TAPER software's ORM database mappings. All these modules are subclasses of DBIx::Class (more specifically, DBIx::Class::ResultSource), and none do anything terribly funky. But you really should be apt with DBIC basics before delving into these. Once again, please see "The Definitive Guide to Catalyst" for an excellent overview of this technology.</p>
+
+<ul>
+	<li>lib/TAPER/Logic</li>
+</ul>
+
+
+<p>Business logic modules that exist outside of the strict MVC model. Some, namely <tt>SSA.pm</tt> an <tt>RSA.pm</tt>, have their own interface methods in <tt>TAPER/Model</tt> to help you use them; the rest are simple objects used by certain other controllers or data models.</p>
+
+<h2>Other TAPER files and directories</h2>
+
+<ul>
+	<li>script</li>
+</ul>
+
+
+<p>Standard-issue Catalyst server scripts, with no customization performed after their automatic creation. Refer to the Catalyst docs (as well as these scripts' own built-in POD docs) for more information on their use.</p>
+
+<ul>
+	<li>taper.conf</li>
+</ul>
+
+
+<p>The site-specific configuaration file. Updating this file with appropriate values is a crucial step in any TAPER software rollout. See <a href="TAPER+software+nuts+and+bolts.html">TAPER software nuts and bolts</a> for more information.</p>
+
+<ul>
+	<li>Makefile.PL</li>
+</ul>
+
+
+<p>A thoroughly unsurprising Perl-style makefile, but it does serve the purpose of listing all the third-party CPAN modules you'll need to run the TAPER sofwtare, and can help you find and install them. Again, see <a href="TAPER+software+nuts+and+bolts.html">TAPER software nuts and bolts</a> for more information.</p>
+
+<ul>
+	<li>run</li>
+</ul>
+
+
+<p>The web application writes session information and such here. So long as it's set as writeable by the Apache-running user, you needn't concern yourself with its contents. </p>
+
+<ul>
+	<li>t</li>
+</ul>
+
+
+<p>Perl-style test scripts, named after the application attributes or features that each one tests. Run individual tests by feeding scripts one at a time to <tt>perl</tt>, or give the entire application a workout by feeding the whole directory to <tt>prove</tt>.</p>
+
+<p>Note that in either case, depending on how your environment is set, you may have to specify the location of <tt>TAPER/lib</tt> while running the command, either with <tt>perl -I</tt> (that's a capital i) or <tt>prove -l</tt> (that's a lowercase L). So, for example, to test the software while your current working directory is <tt>TAPER</tt>, run <tt>prove -l lib t</tt>.</p>
+
+<h2>License</h2>
+
+<p>Copyright 2010-2011 Tufts University.</p>
+
+<p>The TAPER software suite and its accompanying documentation are made available under the GNU Affero General Public License (AGPL) v3.</p>
+
+<p>This file is part of the TAPER software suite.</p>
+
+<p>The TAPER software suite is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>The TAPER software suite is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with the TAPER software suite.  If not, see &lt;<a href="http://www.gnu.org/licenses/" rel="nofollow">http://www.gnu.org/licenses/</a>&gt;.</p>
+
+
+<p>The development of the TAPER software suite was funded by the <a
+href="http://www.archives.gov/nhprc">National Historical Publications and
+Records Commission (NHPRC)</a>. Grant number RE10005-08.</p>
+
+<h3>Authors</h3>
+
+<p>Jason McIntosh, Appleseed Consulting<br/>
+Doug Orleans, Appleseed Consulting<br/>
+Deborah Kaplan, Tufts University Digital Collections and Archives</p>
+
+<h3>Versions</h3>
+
+<p>This document revised:</p>
+
+<p>2011-06-17</p>
+
+</body>
+</html>
